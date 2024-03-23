@@ -32,6 +32,7 @@ lagrange_poly = spi.lagrange(xi, yi)
 
 axis[1,0].plot(xf, lagrange_poly(xf), color='green')
 axis[1,0].set_title("Lagrange polynomial interpolation")
+axis[1,0].set_ylim(0,4)
 
 # Utilizo splines cubicos para interpolar los puntos
 cubic_spline = spi.CubicSpline(xi, yi)
