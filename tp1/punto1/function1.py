@@ -60,4 +60,4 @@ plt.legend()
 plt.title("Interpolation Methods Overlapped Function A", fontsize=20)
 plt.show()
 
-# hacer 00 normal, 01 lagrange, 10 chebychev, 11 splines y otro con todos solapados
+# cambiar lineal por chebyshev
