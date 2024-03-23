@@ -50,3 +50,5 @@ axis[1,2].set_title("Splines over original")
 
 figure.suptitle("Interpolation Methods Function A", fontsize=20)
 plt.show()
+
+# hacer 00 normal, 01 lagrange, 10 chebychev, 11 splines y otro con todos solapados
