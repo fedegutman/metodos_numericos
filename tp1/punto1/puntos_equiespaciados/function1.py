@@ -1,5 +1,5 @@
 import numpy as np
-import scipy.interpolate as spi
+from scipy.interpolate import lagrange, interp1d
 import matplotlib.pyplot as plt
 
 def f(x):
@@ -22,20 +22,20 @@ axis[0,0].set_title("Original function")
 
 # Utilizo interpolacion lineal para interpolar los puntos
 
-f_linear = spi.interp1d(xi, yi, kind='linear')
+f_linear = interp1d(xi, yi, kind='linear')
 
 axis[0,1].plot(xf, f_linear(xf), color='orange')
 axis[0,1].set_title("Linear interpolation")
 
 # 'Utilizo polinomios de lagrange para interpolar los puntos'
-lagrange_poly = spi.lagrange(xi, yi)
+lagrange_poly = lagrange(xi, yi)
 
 axis[1,0].plot(xf, lagrange_poly(xf), color='green')
 axis[1,0].set_title("Lagrange polynomial interpolation")
 axis[1,0].set_ylim(0,4)
 
 # Utilizo splines cubicos para interpolar los puntos
-cubic_spline = spi.CubicSpline(xi, yi)
+cubic_spline = interp1d(xi, yi, kind='cubic')
 
 axis[1,1].plot(xf, cubic_spline(xf), color='red')
 axis[1,1].set_title("Cubic spline interpolation")
