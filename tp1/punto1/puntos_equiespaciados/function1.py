@@ -21,7 +21,6 @@ axis[0,0].plot(xf, yf)
 axis[0,0].set_title("Original function")
 
 # Utilizo interpolacion lineal para interpolar los puntos
-
 f_linear = interp1d(xi, yi, kind='linear')
 
 axis[0,1].plot(xf, f_linear(xf), color='orange')
@@ -61,6 +60,4 @@ plt.legend()
 plt.title("Interpolation Methods Overlapped Function A", fontsize=20)
 plt.show()
 
-# cambiar lineal por chebyshev y calcular error
-# cuantos puntos usar para interpolar
-# como hacer con los puntos no equiespaciados
+# Calculo el error de los distintos metodos
