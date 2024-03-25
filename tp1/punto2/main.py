@@ -45,5 +45,3 @@ plt.scatter(x2, y2, color='red')
 plt.ylim(0,6)
 plt.legend()
 plt.show()
-
-# preguntar splines
