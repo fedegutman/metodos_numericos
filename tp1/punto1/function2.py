@@ -12,6 +12,9 @@ def f(x1, x2):
 x1 = np.linspace(-1, 1, 100)
 x2 = np.linspace(-1, 1, 100)
 X1, X2 = np.meshgrid(x1, x2)
+
+# For example, if x1 = [1, 2, 3] and x2 = [4, 5, 6], f(x1, x2) will give you the result of applying the function to the pairs (1, 4), (2, 5), and (3, 6). But with X1, X2 = np.meshgrid(x1, x2), you will get the result of applying the function to the pairs (1, 4), (1, 5), (1, 6), (2, 4), (2, 5), (2, 6), (3, 4), (3, 5), and (3, 6).
+
 Z = f(X1, X2)
 
 fig = plt.figure()
@@ -20,3 +23,11 @@ ax.plot_surface(X1, X2, Z, cmap='viridis')
 plt.show()
 
 # interpolo la funcion f usando grid data
+xi = np.linspace(-1, 1, 15)
+yi = np.linspace(-1, 1, 15)
+X, Y = np.meshgrid(xi, yi)
+
+# Z = f(X, Y)
+# f = spi.interp2d(xi, yi, Z, kind='linear')
+# plt.imshow(f(xi, yi), cmap='viridis')
+# plt.show()

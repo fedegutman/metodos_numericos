@@ -62,3 +62,5 @@ plt.title("Interpolation Methods Overlapped Function A", fontsize=20)
 plt.show()
 
 # cambiar lineal por chebyshev y calcular error
+# cuantos puntos usar para interpolar
+# como hacer con los puntos no equiespaciados
