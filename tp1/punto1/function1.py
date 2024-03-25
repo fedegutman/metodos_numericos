@@ -61,4 +61,4 @@ plt.legend()
 plt.title("Interpolation Methods Overlapped Function A", fontsize=20)
 plt.show()
 
-# cambiar lineal por chebyshev
+# cambiar lineal por chebyshev y calcular error
