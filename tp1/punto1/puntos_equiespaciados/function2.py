@@ -25,24 +25,26 @@ xi = np.linspace(-1, 1, 15)
 yi = np.linspace(-1, 1, 15)
 XI, YI = np.meshgrid(xi, yi)
 
+columna = np.column_stack((XI.flatten(), YI.flatten()))
+
 # Interpolo la funcion f usando grid data (cubic)
-Zi_cubic = griddata((XI.flatten(), YI.flatten()), f(XI, YI).flatten(), (XI, YI), method='cubic')
+Zi_cubic = griddata(columna, f(XI, YI).flatten(), (X1, X2), method='cubic')
 ax2 = fig.add_subplot(222, projection='3d')  # 122 means 1 row, 2 columns, second plot
-ax2.plot_surface(XI, YI, Zi_cubic, cmap='viridis')
+ax2.plot_surface(X1, X2, Zi_cubic, cmap='viridis')
 ax2.set_title('Cubic Interpolation')
 
 fig.suptitle("3D Interpolation Function B", fontsize=20)
 
 # Interpolo la funcion f usando grid data (nearest)
-Zi_nearest = griddata((XI.flatten(), YI.flatten()), f(XI, YI).flatten(), (XI, YI), method='nearest')
+Zi_nearest = griddata(columna, f(XI, YI).flatten(), (X1, X2), method='nearest')
 ax3 = fig.add_subplot(223, projection='3d')
-ax3.plot_surface(XI, YI, Zi_nearest, cmap='viridis')
+ax3.plot_surface(X1, X2, Zi_nearest, cmap='viridis')
 ax3.set_title('Nearest Interpolation')
 
 # Interpolo la funcion f usando grid data (linear)
-Zi_linear = griddata((XI.flatten(), YI.flatten()), f(XI, YI).flatten(), (XI, YI), method='linear')
+Zi_linear = griddata(columna, f(XI, YI).flatten(), (X1, X2), method='linear')
 ax4 = fig.add_subplot(224, projection='3d') # 224 is 2 rows, 2 columns, fourth plot
-ax4.plot_surface(XI, YI, Zi_linear, cmap='viridis')
+ax4.plot_surface(X1, X2, Zi_linear, cmap='viridis')
 ax4.set_title('Linear Interpolation')
 
 plt.show()
