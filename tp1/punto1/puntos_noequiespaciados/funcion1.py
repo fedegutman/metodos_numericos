@@ -30,7 +30,7 @@ axis[0].set_title("Original function")
 
 # Utilizo polinomios de lagrange para interpolar los nodos de chebyshev
 
-nodes = chebyshev_nodes(17, (-4,4))
+nodes = chebyshev_nodes(20, (-4,4))
 
 chebyshev_lagrange = lagrange(nodes, f(nodes))
 

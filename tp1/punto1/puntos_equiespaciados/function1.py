@@ -14,7 +14,7 @@ def f(x):
 xf = np.array(np.linspace(-4, 4, 500))
 yf = np.array([f(i) for i in xf])
 
-xi = np.array(np.linspace(-4, 4, 15))
+xi = np.array(np.linspace(-4, 4, 17))
 yi = np.array([f(i) for i in xi])
 
 figure, axis = plt.subplots(2, 2)
