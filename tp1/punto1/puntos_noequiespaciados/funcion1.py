@@ -54,3 +54,5 @@ plt.ylim(0,4)
 plt.legend()
 plt.title("Lagrange interpolation using Chebyshev Nodes vs Equispaced Nodes", fontsize=20)
 plt.show()
+
+# falta graficar las demas cosas
