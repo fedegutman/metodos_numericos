@@ -10,14 +10,14 @@ def get_coordinates(file:str) -> list:
             data.append((x,y))
     return data
 
-# grafico la trayectoria del primer vehiculo
+# Grafico la trayectoria del primer vehiculo
 first_vehicle = get_coordinates("tp1/punto2/mnyo_ground_truth.csv")
 x1 = np.array([float(x) for x, _ in first_vehicle])
 y1 = np.array([float(y) for _, y in first_vehicle])
 
 plt.plot(x1, y1, color='black', label='First Vehicle')
 
-# interpolo la trayectoria del segundo vehiculo usano polinomios de lagrange y grafico
+# Interpolo la trayectoria del segundo vehiculo usano polinomios de lagrange y grafico
 second_vehicle = get_coordinates("tp1/punto2/mnyo_mediciones2.csv")
 x2 = np.array([float(x) for x, _ in second_vehicle])
 y2 = np.array([float(y) for _, y in second_vehicle])
@@ -29,11 +29,4 @@ plt.title('Trajectories of both vehicles', fontsize=20)
 plt.legend()
 plt.show()
 
-# busco la interseccion entre las trayectorias
-
-
-
-
-
-
-
+# Busco la interseccion entre las trayectorias
