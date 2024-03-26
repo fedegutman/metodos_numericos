@@ -1,6 +1,9 @@
-import numpy as np
-from scipy.interpolate import lagrange, interp1d
+from scipy.interpolate import lagrange, interp1d, CubicSpline
+# from numpy.polynomial import chebyshev
 import matplotlib.pyplot as plt
+import numpy as np
+
+'Tomando puntos equiespaciados en el intervalo [-4,4]'
 
 def f(x):
     '''
@@ -10,8 +13,6 @@ def f(x):
 
 xf = np.array(np.linspace(-4, 4, 500))
 yf = np.array([f(i) for i in xf])
-
-' -------- Primero tomando puntos equiespaciados -------- '
 
 xi = np.array(np.linspace(-4, 4, 15))
 yi = np.array([f(i) for i in xi])
@@ -26,7 +27,7 @@ f_linear = interp1d(xi, yi, kind='linear')
 axis[0,1].plot(xf, f_linear(xf), color='orange')
 axis[0,1].set_title("Linear interpolation")
 
-# 'Utilizo polinomios de lagrange para interpolar los puntos'
+# Utilizo polinomios de lagrange para interpolar los puntos
 lagrange_poly = lagrange(xi, yi)
 
 axis[1,0].plot(xf, lagrange_poly(xf), color='green')
@@ -34,11 +35,10 @@ axis[1,0].set_title("Lagrange polynomial interpolation")
 axis[1,0].set_ylim(0,4)
 
 # Utilizo splines cubicos para interpolar los puntos
-cubic_spline = interp1d(xi, yi, kind='cubic')
+cubic_spline = CubicSpline(xi, yi)
 
 axis[1,1].plot(xf, cubic_spline(xf), color='red')
 axis[1,1].set_title("Cubic spline interpolation")
-
 
 # Grafico los nodos
 for row in axis:
@@ -60,4 +60,33 @@ plt.legend()
 plt.title("Interpolation Methods Overlapped Function A", fontsize=20)
 plt.show()
 
-# Calculo el error de los distintos metodos
+# Grafico el error de los distintos metodos comparado con la funcion original
+figure, axis = plt.subplots(1, 3)
+axis[0].plot(xf, abs(yf - f_linear(xf)), color='orange')
+axis[0].set_title("Linear interpolation error")
+
+axis[1].plot(xf, abs(yf - lagrange_poly(xf)), color='green')
+axis[1].set_title("Lagrange polynomial interpolation error")
+
+axis[2].plot(xf, abs(yf - cubic_spline(xf)), color='red')
+axis[2].set_title("Cubic spline interpolation error")
+
+figure.suptitle("Interpolation Methods Error Function A", fontsize=20)
+plt.show()
+
+# chequear
+
+# test polis de chebyshev
+'''
+figure, axis = plt.subplots(1, 2)
+
+axis[0].plot(xf, yf)
+axis[0].set_title("Original function")
+
+coeffs = chebyshev.chebfit(xi, yi, deg=len(xi)-1)
+cheb_poly = chebyshev.Chebyshev(coeffs)
+axis[1].plot(xf, cheb_poly(xf), color='orange')
+axis[1].set_title("Chebyshev polynomial interpolation")
+
+plt.show()
+'''
