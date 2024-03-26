@@ -1,16 +1,16 @@
 DUDAS:
 - Cuantos puntos usar para interpolar (?)
-- Como hacer con los puntos no equiespaciados -> si usar nodos de chebyshev esta bien
 - Si esta bien la interpolacion con lagrange en la trayectoria del ground truth (y si se puede usar splines)
 - Cuantos metodos de interpolacion hay que usar para la funcion 1b (si usar varios de griddata) y si usar nodos de chebyshev
 - No importa que el codigo este medio desprolijo no?
+- Preguntar que carajo pasa con las funciones 3d del 1b
 
 COSAS PARA HACER:
 - 1A
     - Cambiar lineal por chebyshev (opcional) y calcular error
     - Copiar todos los metodos de interpolacion para puntos no equiespaciados
 - 1B
-    - Interpolar en 3d (ver griddata)
+    - Interpolar en 3d (ver griddata) con puntos no equiespaciados
 - 2A
     - Comparar interpolacion con trayectoria real
 - 2B
