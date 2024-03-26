@@ -22,7 +22,7 @@ ax1.plot_surface(X1, X2, Z, cmap='viridis')
 ax1.set_title('Original Function')
 
 
-# Interpolo la funcion f usando grid data 
+# Interpolo la funcion f usando grid data (cubic) (ver de usar otras formas)
 xi = np.linspace(-1, 1, 15)
 yi = np.linspace(-1, 1, 15)
 XI, YI = np.meshgrid(xi, yi)
