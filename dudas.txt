@@ -1,8 +1,9 @@
 DUDAS:
-- Cuantos puntos usar para interpolar
+- Cuantos puntos usar para interpolar (?)
 - Como hacer con los puntos no equiespaciados -> si usar nodos de chebyshev esta bien
 - Si esta bien la interpolacion con lagrange en la trayectoria del ground truth (y si se puede usar splines)
 - Cuantos metodos de interpolacion hay que usar para la funcion 1b y como hacer una regla para usar puntos no equiespaciados
+- No importa que el codigo este medio desprolijo no?
 
 COSAS PARA HACER:
 - 1A
