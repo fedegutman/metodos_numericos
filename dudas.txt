@@ -14,3 +14,5 @@ COSAS PARA HACER:
     - Comparar interpolacion con trayectoria real
 - 2B
     - Ver si esta bien interpolada con lagrange la trayectoria 2 y calcular la interseccion entre las trayectorias
+
+PREGUNTAR SI PUEDE SER QUE SIN LOS NODOS EN EL 1B ME HAYA DADO UN MENOR ERROR QUE CON
