@@ -79,20 +79,3 @@ axis[2].set_ylim(0, 0.5)
 
 figure.suptitle("Interpolation Methods Error Function A", fontsize=20)
 plt.show()
-
-# chequear
-
-# test polis de chebyshev
-'''
-figure, axis = plt.subplots(1, 2)
-
-axis[0].plot(xf, yf)
-axis[0].set_title("Original function")
-
-coeffs = chebyshev.chebfit(xi, yi, deg=len(xi)-1)
-cheb_poly = chebyshev.Chebyshev(coeffs)
-axis[1].plot(xf, cheb_poly(xf), color='orange')
-axis[1].set_title("Chebyshev polynomial interpolation")
-
-plt.show()
-'''
