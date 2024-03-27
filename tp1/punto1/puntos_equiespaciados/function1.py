@@ -65,14 +65,17 @@ figure, axis = plt.subplots(1, 3)
 axis[0].plot(xf, abs(yf - f_linear(xf)), color='orange')
 axis[0].set_title("Linear interpolation error")
 axis[0].set_ylim(0, 0.5)
+# axis[0].set_yscale('log') -> escala logaritmica (reemplaza la linea de arriba del ylim por esto)
 
 axis[1].plot(xf, abs(yf - lagrange_poly(xf)), color='green')
 axis[1].set_title("Lagrange polynomial interpolation error")
 axis[1].set_ylim(0, 0.5)
+# axis[1].set_yscale('log') -> escala logaritmica
 
 axis[2].plot(xf, abs(yf - cubic_spline(xf)), color='red')
 axis[2].set_title("Cubic spline interpolation error")
 axis[2].set_ylim(0, 0.5)
+# axis[2].set_yscale('log') -> escala logaritmica
 
 figure.suptitle("Interpolation Methods Error Function A", fontsize=20)
 plt.show()
