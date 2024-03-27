@@ -21,27 +21,12 @@ def f(x):
     return (0.3**abs(x)) * np.sin(4*x) - np.tanh(2*x) + 2
 
 xf = np.array(np.linspace(-4, 4, 500))
-yf = np.array([f(i) for i in xf])
-
-figure, axis = plt.subplots(1,2)
-
-axis[0].plot(xf, yf)
-axis[0].set_title("Original function")
-
-# Utilizo polinomios de lagrange para interpolar los nodos de chebyshev
+yf = f(xf)
 
 nodes = chebyshev_nodes(20, (-4,4))
 
-chebyshev_lagrange = lagrange(nodes, f(nodes))
-
-axis[1].plot(xf, chebyshev_lagrange(xf), color='green')
-axis[1].set_title("Lagrange polynomial interpolation")
-axis[1].set_ylim(0,4)
-
-figure.suptitle("Lagrange interpolation using Chebyshev Nodes", fontsize=20)
-plt.show()
-
 # Comparo lagrange con nodos de chebyshev a lagrange sin nodos
+chebyshev_lagrange = lagrange(nodes, f(nodes))
 
 xi = np.array(np.linspace(-4, 4, 17))
 lagrange_poly = lagrange(xi, f(xi))
@@ -52,7 +37,7 @@ plt.plot(xf, lagrange_poly(xf), label='Lagrange equispaced', color='blue', lines
 plt.scatter(nodes, f(nodes), color='black')
 plt.ylim(0,4)
 plt.legend()
-plt.title("Lagrange interpolation using Chebyshev Nodes vs Equispaced Nodes", fontsize=20)
+plt.title("Lagrange interpolation using Chebyshev Nodes vs Equispaced Nodes", fontsize=20, y=1.03)
 plt.show()
 
 # falta graficar las demas cosas
