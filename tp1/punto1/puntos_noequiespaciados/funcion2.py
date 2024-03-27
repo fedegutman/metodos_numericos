@@ -2,30 +2,45 @@ from scipy.interpolate import griddata
 import numpy as np
 import matplotlib.pyplot as plt
 
+def chebyshev_nodes(n, interval):
+    '''
+    n: cantidad de nodos
+    interval: tupla con los extremos del intervalo
+    '''
+    a, b = interval
+    k = np.arange(1, n + 1)
+    nodes = 0.5 * ((b - a) * np.cos((2 * k - 1) * np.pi / (2 * n)) + (a + b))
+    return nodes
+
 def f(x1, x2):
     '''
     x1, x2 ∈ [-1,1]
     '''
     return 0.75*np.exp( (-((10*x1-2)**2)/4) - (((9*x2-2)**2)/4) ) + 0.65*np.exp( (-((9*x1+1)**2)/9) - (((10*x2+1)**2)/2) ) + 0.55*np.exp( (-((9*x1-6)**2)/4) - (((9*x2-3)**2)/4) ) - 0.01*np.exp( (-((9*x1-7)**2)/4) - (((9*x2-3)**2)/4) )
 
-# Grafico utilizando matplotlib
-x1 = np.linspace(-1, 1, 100)
-x2 = np.linspace(-1, 1, 100)
-X1, X2 = np.meshgrid(x1, x2)
+xf = np.linspace(-1, 1, 500)
+yf = np.linspace(-1, 1, 500)
+X1, X2 = np.meshgrid(xf, yf)
 Z = f(X1, X2)
 
-# Meshgrid -> For example, if x1 = [1, 2, 3] and x2 = [4, 5, 6], f(x1, x2) will give you the result of applying the function to the pairs (1, 4), (2, 5), and (3, 6). But with X1, X2 = np.meshgrid(x1, x2), you will get the result of applying the function to the pairs (1, 4), (1, 5), (1, 6), (2, 4), (2, 5), (2, 6), (3, 4), (3, 5), and (3, 6).
+nodes_x = chebyshev_nodes(20, (-1,1))
+nodes_x = np.append(nodes_x, [-1, 1])
+nodes_x = np.sort(nodes_x)
 
-fig = plt.figure(figsize=(10, 8))
-ax1 = fig.add_subplot(221, projection='3d') # 121 es 1 row, 2 columns, primer plot
-ax1.plot_surface(X1, X2, Z, cmap='viridis')
-ax1.set_title('Original Function')
+nodes_y = chebyshev_nodes(20, (-1,1))
+nodes_y = np.append(nodes_y, [-1, 1])
+nodes_y = np.sort(nodes_y)
 
-xi = np.linspace(-1, 1, 20)
-yi = np.linspace(-1, 1, 20)
-XI, YI = np.meshgrid(xi, yi)
+XI, YI = np.meshgrid(nodes_x, nodes_y)
 
 columna = np.column_stack((XI.flatten(), YI.flatten()))
+
+# Grafico la funcion original
+
+fig = plt.figure(figsize=(10, 8))
+ax1 = fig.add_subplot(221, projection='3d')
+ax1.plot_surface(X1, X2, Z, cmap='viridis')
+ax1.set_title('Original Function')
 
 # Interpolo la funcion f usando grid data (cubic)
 Zi_cubic = griddata(columna, f(XI, YI).flatten(), (X1, X2), method='cubic')
@@ -33,7 +48,7 @@ ax2 = fig.add_subplot(222, projection='3d')  # 122 means 1 row, 2 columns, secon
 ax2.plot_surface(X1, X2, Zi_cubic, cmap='viridis')
 ax2.set_title('Cubic Interpolation')
 
-fig.suptitle("3D Interpolation Function B", fontsize=20, y=0.97)
+fig.suptitle("3D Interpolation Function B using Chebyshev Nodes", fontsize=20, y=0.97)
 
 # Interpolo la funcion f usando grid data (nearest)
 Zi_nearest = griddata(columna, f(XI, YI).flatten(), (X1, X2), method='nearest')
@@ -70,6 +85,6 @@ ax3 = fig2.add_subplot(133, projection='3d')
 ax3.plot_surface(X1, X2, Zi_linear_error, cmap='viridis')
 ax3.set_title('Error of Linear Interpolation')
 
-fig2.suptitle("3D Interpolation Error Function B", fontsize=20, y=0.93)
+fig2.suptitle("3D Interpolation Error Function B using Chebyshev nodes", fontsize=20, y=0.93)
 
 plt.show()
