@@ -84,4 +84,3 @@ plt.plot(poly1(intersection[0]), poly2(intersection[0]), 'yo', label='Intersecti
 plt.title('Trajectories of both vehicles', fontsize=20)
 plt.legend()
 plt.show()
-
