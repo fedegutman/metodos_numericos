@@ -59,12 +59,16 @@ plt.plot(spline3_x(tiempo2), spline3_y(tiempo2), label='Second Vehicle', color='
 # Busco la interseccion entre las trayectorias utilizando el metodo de newton raphson
 
 def f(t1, t2):
-    return np.array([spline1(t1) - spline3_x(t2), spline2(t1) - spline3_y(t2)])
+    return np.array([poly1(t1) - spline3_x(t2), poly2(t1) - spline3_y(t2)])
 
 def jacobian(t1, t2):
-    return np.array([[spline1.derivative()(t1), -spline3_x.derivative()(t2)], [spline2.derivative()(t1), -spline3_y.derivative()(t2)]])
+    poly1_derivative = lagrange(tiempo1, np.polyder(x2))(t1)
+    poly2_derivative = lagrange(tiempo1, np.polyder(y2))(t1)
+    
+    return np.array([[poly1_derivative, -spline3_x.derivative()(t2)], [poly2_derivative, -spline3_y.derivative()(t2)]])
 
-def newton_raphson(estimation, function, jac, tolerance = 1e-20, max_iteration = 100):
+
+def newton_raphson(estimation, function, jac, tolerance = 1e-20, max_iteration = 200):
     for i in range(max_iteration):
         delta = np.linalg.solve(jac(estimation[0], estimation[1]), function(estimation[0], estimation[1]))
         estimation -= delta
@@ -75,7 +79,7 @@ def newton_raphson(estimation, function, jac, tolerance = 1e-20, max_iteration =
 estimation = np.array([0.0, 0.0])
 intersection = newton_raphson(estimation, f, jacobian)
 
-plt.plot(spline1(intersection[0]), spline2(intersection[0]), 'yo', label='Intersection')
+plt.plot(poly1(intersection[0]), poly2(intersection[0]), 'yo', label='Intersection')
 
 plt.title('Trajectories of both vehicles', fontsize=20)
 plt.legend()
