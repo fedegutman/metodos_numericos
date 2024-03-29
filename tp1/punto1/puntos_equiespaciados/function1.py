@@ -1,5 +1,4 @@
 from scipy.interpolate import lagrange, interp1d, CubicSpline
-# from numpy.polynomial import chebyshev
 import matplotlib.pyplot as plt
 import numpy as np
 
