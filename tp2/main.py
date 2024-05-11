@@ -4,7 +4,7 @@ from math import exp
 
 # MÉTODOS
 
-def runge_kutta(f, t0, y0, h, n):
+def runge_kutta4(f, t0, y0, h, n):
     t = t0
     y = y0
     for i in range(n):
@@ -27,58 +27,125 @@ def euler(f, t0, y0, h, n):
 # ODES -> N(t) es el tamaño de la población en el tiempo t
 
 # Crecimiento exponencial
-dNdt_exp = lambda r, N: r*N
-
-'''
--> El crecimiento de la población está determinado por una tasa instantánea de crecimiento per cápita r
-
--> N0 la condición incial, es decir el tamaño de la población en el tiempo t = 0
-'''
+dNdt_exp = lambda t, N: r*N
 
 # Crecimiento logistico
-dNdt_log = lambda r, N, K: r*N * ((K - N)/K)
-
-'''
--> K es la capacidad de carga del sistema, es decir el tamaño máximo de la población que el sistema puede soportar
--> Además se pide que la tasa de crecimiento per cápita, (1/N) (dN/dt), dependa del tamaño de la población.
-'''
+dNdt_log = lambda t, N: r*N * ((K - N)/K)
 
 # Obtengo las soluciones analíticas
 Nexp = lambda N0, r, t: N0 * exp(r*t)
 Nlog = lambda N0, r, K, t: K / (1 + (K/N0 - 1) * exp(-r*t))
 
-N0 = 2 
-r = 0.01 # o 0.1 probar
-K = 100 # probar con otros valores
-
-# Grafico tamaño poblacional en función del tiempo (N vs t) 
+# Grafico tamaño poblacional en función del tiempo (N vs t) y estudió la variación de los parámetros
 t = np.linspace(0, 100, 1000)
+figure, axis = plt.subplots(1, 3)
+
+# Parámetros 1
+N0 = 2
+r = 0.01
+K = 15
+
 poblacion_exp = np.array([Nexp(N0, r, i) for i in t])
 poblacion_log = np.array([Nlog(N0, r, K, i) for i in t])
-'chequear parametros'
 
-plt.plot(t, poblacion_exp, label='Crecimiento exponencial')
-plt.plot(t, poblacion_log, label='Crecimiento logístico')
-plt.legend()
-plt.xlabel('Tiempo')
-plt.ylabel('Población')
-plt.title('Soluciones analíticas')
+axis[0].plot(t, poblacion_exp, label=f'Crecimiento exponencial')
+axis[0].plot(t, poblacion_log, label=f'Crecimiento logístico')
+axis[0].legend()
+axis[0].set_xlabel('Tiempo')
+axis[0].set_ylabel('Población')
+axis[0].set_title(f'N0={N0}, r={r}, K={K}')
+
+# Parámetros 2
+N0 = 1
+r = 0.05
+K = 20
+
+poblacion_exp = np.array([Nexp(N0, r, i) for i in t])
+poblacion_log = np.array([Nlog(N0, r, K, i) for i in t])
+
+axis[1].plot(t, poblacion_exp, label=f'Crecimiento exponencial')
+axis[1].plot(t, poblacion_log, label=f'Crecimiento logístico')
+axis[1].set_title(f'N0={N0}, r={r}, K={K}')
+
+# Parámetros 3
+
+N0 = 20
+r = -0.1
+K = 50
+
+poblacion_exp = np.array([Nexp(N0, r, i) for i in t])
+poblacion_log = np.array([Nlog(N0, r, K, i) for i in t])
+
+axis[2].plot(t, poblacion_exp, label=f'Crecimiento exponencial')
+axis[2].plot(t, poblacion_log, label=f'Crecimiento logístico')
+axis[2].set_title(f'N0={N0}, r={r}, K={K}')
+
 plt.show()
 
-# Grafico la variación poblacional en función del tamaño poblacional (dN/dt vs N)
+# Grafico la variación poblacional en función del tamaño poblacional (dN/dt vs N) y estudió la variación de los parámetros
+N = np.array(range(1, 51))
 
-# ESTO ESTA HECHO CON CHAT (CHEQUEAR)
+figure, axis = plt.subplots(1, 3)
 
-N = np.linspace(0, 100, 1000)
+# Parámetros 1
+r = 0.5
+K = 20
+
 variacion_exp = np.array([r * i for i in N])
 variacion_log = np.array([r * i * ((K - i)/K) for i in N])
 
-plt.plot(N, variacion_exp, label='Crecimiento exponencial')
-plt.plot(N, variacion_log, label='Crecimiento logístico')
-plt.legend()
-plt.xlabel('Población')
-plt.ylabel('Variación poblacional')
-plt.title('Soluciones analíticas')
+axis[0].plot(N, variacion_exp, label='Crecimiento exponencial')
+axis[0].plot(N, variacion_log, label='Crecimiento logístico')
+axis[0].legend()
+axis[0].set_xlabel('Población')
+axis[0].set_ylabel('Variación poblacional')
+axis[0].set_title(f'r={r}, K={K}')
+
+# Parámetros 2
+r = 0.1
+K = 70
+
+variacion_exp = np.array([r * i for i in N])
+variacion_log = np.array([r * i * ((K - i)/K) for i in N])
+
+axis[1].plot(N, variacion_exp, label='Crecimiento exponencial')
+axis[1].plot(N, variacion_log, label='Crecimiento logístico')
+axis[1].set_title(f'r={r}, K={K}')
+
+# Parámetros 3
+r = -0.1
+K = 50
+
+variacion_exp = np.array([r * i for i in N])
+variacion_log = np.array([r * i * ((K - i)/K) for i in N])
+
+axis[2].plot(N, variacion_exp, label='Crecimiento exponencial')
+axis[2].plot(N, variacion_log, label='Crecimiento logístico')
+axis[2].set_title(f'r={r}, K={K}')
 plt.show()
 
+# PUNTO DE EQUILIBRIO -> CUANDO R = 0 o CUANDO N = K (PREGUNTAR)
+
 # Obtengo las soluciones numéricas de ambas ecuaciones por los métodos vistos y comparo con las soluciones exactas
+N0 = 2
+r = 0.1
+K = 15
+t = 1
+h = 0.1
+n = int(t / h)
+
+exact_exp = Nexp(N0, r, t)
+runge_kutta_exp = runge_kutta4(dNdt_exp, 0, N0, h, n)
+euler_exp = euler(dNdt_exp, 0, N0, h, n)
+
+print(f'Exacta: {exact_exp}, runge kutta: {runge_kutta_exp}, euler: {euler_exp}')
+print(f'Diferencia entre exacta y runge kutta: {abs(exact_exp - runge_kutta_exp)}')
+print(f'Diferencia entre exacta y euler: {abs(exact_exp - euler_exp)}\n\n')
+
+exact_log = Nlog(N0, r, K, t)
+runge_kutta_log = runge_kutta4(dNdt_log, 0, N0, h, n)
+euler_log = euler(dNdt_log, 0, N0, h, n)
+
+print(f'Exacta: {exact_log}, runge kutta: {runge_kutta_log}, euler: {euler_log}')
+print(f'Diferencia entre exacta y runge kutta: {abs(exact_log - runge_kutta_log)}')
+print(f'Diferencia entre exacta y euler: {abs(exact_log - euler_log)}')
