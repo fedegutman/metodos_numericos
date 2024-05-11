@@ -70,8 +70,8 @@ plt.show()
 # ESTO ESTA HECHO CON CHAT (CHEQUEAR)
 
 N = np.linspace(0, 100, 1000)
-variacion_exp = 0.1 * N
-variacion_log = 0.1 * N * ((100 - N)/100)
+variacion_exp = np.array([r * i for i in N])
+variacion_log = np.array([r * i * ((K - i)/K) for i in N])
 
 plt.plot(N, variacion_exp, label='Crecimiento exponencial')
 plt.plot(N, variacion_log, label='Crecimiento logístico')
