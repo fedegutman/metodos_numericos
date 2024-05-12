@@ -149,3 +149,30 @@ euler_log = euler(dNdt_log, 0, N0, h, n)
 print(f'Exacta: {exact_log}, runge kutta: {runge_kutta_log}, euler: {euler_log}')
 print(f'Diferencia entre exacta y runge kutta: {abs(exact_log - runge_kutta_log)}')
 print(f'Diferencia entre exacta y euler: {abs(exact_log - euler_log)}')
+
+# Busco punto de equilibrio/punto fijo de la ecuacion logistica
+'''
+dNdt_log = 0 ----> 0 = r*N * ((K - N)/K)
+Entonces r*N = 0 o K - N = 0
+Recuerdo, r = tasa de crecimiento, n = tamaño de la población, K = tamaño máximo de la población (NO PUEDE SER CERO)
+Entonces r = 0 (tasa de crecimiento nula) N = 0 (arranco sin poblacion) o N = K (se alcanza el tamaño máximo de la población)
+'''
+
+# Corroboro
+# r = 0
+r = 0
+N = 2
+K = 15
+print(f'Para r = 0 (N = 0, K = 15): dN/dt {r*N * ((K - N)/K)}')
+
+# N = 0
+r = 0.1
+N = 0
+K = 15
+print(f'Para N = 0 (r = 0.1, K = 15): {r*N * ((K - N)/K)}')
+
+# N = K
+r = 0.1
+N = 15
+K = 15
+print(f'Para N = K (r = 0.1, K = 15): {r*N * ((K - N)/K)}')
