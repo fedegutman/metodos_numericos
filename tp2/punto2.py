@@ -47,60 +47,44 @@ N1 = K1 - alpha*N2
 N2 = K2 - beta*N1
 '''
 
-# Caso 1
-alpha = 0.2
-beta = 0.6
-K1 = 100
-K2 = 100
+# Graficos
+figure, axis = plt.subplots(2, 2)
 
-# Grafico las isoclinas
+for i in range(2):
+    for j in range(2):
+        axis[i, j].set_xlabel('N1')
+        axis[i, j].set_ylabel('N2')
+
+# Caso 1 -> Gana la especie 1
+alpha = 1.2
+beta = 0.5
+K1, K2 = 70, 75
+
 N1 = np.linspace(0, K1, 100)
 N2 = np.linspace(0, K2, 100)
 
-N1_isocline = K1 - alpha*N2
-N2_isocline = K2 - beta*N1
+N1_isocline = np.array([(K1 - alpha*N2) for N2 in N2])
+N2_isocline = np.array([(K2 - beta*N1) for N1 in N1])
 
-plt.figure()
-plt.plot(N2, N1_isocline, label='Species 1 Isocline')
-plt.plot(N1, N2_isocline, label='Species 2 Isocline')
-plt.legend()
-plt.xlabel('N1')
-plt.ylabel('N2')
-plt.title('Isoclines')
-plt.show()
+axis[0, 0].plot(N2, N1_isocline, label='Especie 1', color='blue')
+axis[0, 0].plot(N1, N2_isocline, label='Especie 2', color='green')
+axis[0, 0].legend()
+axis[0, 0].set_title('Gana especie 1')
 
-# Caso 2
-alpha = 0.6
-beta = 0.2
-K1 = 100
-K2 = 100
+# Caso 2 -> Gana la especie 2
 
-N1_isocline = K1 - alpha*N2
-N2_isocline = K2 - beta*N1
+alpha = 0.7
+beta = 1.1
+K1, K2 = 70, 75
 
-plt.figure()
-plt.plot(N2, N1_isocline, label='Species 1 Isocline')
-plt.plot(N1, N2_isocline, label='Species 2 Isocline')
-plt.legend()
-plt.xlabel('N1')
-plt.ylabel('N2')
-plt.title('Isoclines')
-plt.show()
+N1 = np.linspace(0, K1, 100)
+N2 = np.linspace(0, K2, 100)
 
-# Caso 3 las isoclinas se cruzan en un punto de equilibrio
-alpha = 0.2 
-beta = 0.2
-K1 = 100
-K2 = 100
+N1_isocline = np.array([(K1 - alpha*N2) for N2 in N2])
+N2_isocline = np.array([(K2 - beta*N1) for N1 in N1])
 
-N1_isocline = K1 - alpha*N2
-N2_isocline = K2 - beta*N1
+axis[0, 1].plot(N2, N1_isocline, label='Especie 1', color='blue')
+axis[0, 1].plot(N1, N2_isocline, label='Especie 2', color='green')
+axis[0, 1].set_title('Gana especie 2')
 
-plt.figure()
-plt.plot(N2, N1_isocline, label='Species 1 Isocline')
-plt.plot(N1, N2_isocline, label='Species 2 Isocline')
-plt.legend()
-plt.xlabel('N1')
-plt.ylabel('N2')
-plt.title('Isoclines')
 plt.show()
