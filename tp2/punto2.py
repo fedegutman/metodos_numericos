@@ -141,6 +141,7 @@ axis[1, 1].set_title('Coexistencia')
 
 # Grafico el campo vectorial (NO FUNCA)
 
+'''
 N1_values = np.linspace(0, K1, 10) 
 N2_values = np.linspace(0, K2, 10) 
 
@@ -158,6 +159,7 @@ for i in N1_values:
         axis[0, 1].quiver(i, j, dN1, dN2, angles='xy', scale_units='xy', color='black')
         axis[1, 0].quiver(i, j, dN1, dN2, angles='xy', scale_units='xy', color='black')
         axis[1, 1].quiver(i, j, dN1, dN2, angles='xy', scale_units='xy', color='black')
+'''
 
 plt.subplots_adjust(wspace=0.3, hspace=0.3)
 plt.show()
