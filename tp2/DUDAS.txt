@@ -10,6 +10,7 @@ PUNTO 2
     -> si me estan dando bien los resultados
 -> como hacer con los graficos
 -> si hay que hacer algo mas
+    -> si hay que variar los parametros para los 4 graficos
 
 PUNTO 3
 ??
