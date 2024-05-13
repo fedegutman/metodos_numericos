@@ -35,7 +35,27 @@ dN2dt = lambda t, N1, N2: r2*N2*(1 - (N2 + beta*N1)/K2)
 'beta -> el efecto que tiene la especie 1 sobre el crecimiento poblacional de la especie 2'
 
 # Parámetros
-# final_N1, final_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+r1 = 0.5
+r2 = 0.5
+alpha = 0.5
+beta = 0.5
+K1 = 100
+K2 = 100
+
+# Condiciones iniciales
+N1_0 = 10
+N2_0 = 10
+
+# Tiempo inicial
+t0 = 0
+
+# Paso
+h = 0.01
+n = 1000
+final_N1, final_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+print(f'N1: {final_N1}, N2: {final_N2}')
+
+# CHEQUEAR ESTO QUE CREO QUE ESTA MAL
 
 # Grafico las isoclinas 
 '''
