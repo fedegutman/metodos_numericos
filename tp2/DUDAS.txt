@@ -1,0 +1,15 @@
+DUDAS
+PUNTO 1
+-> preguntar si estan bien los graficos
+-> pregutar cuantos parametros usar (y si estan bien los q ya puse)
+-> preguntar que hay que hacer con el punto de equlibrio
+-> preguntar sobre las aproximaciones
+
+PUNTO 2
+-> si esta bien definido el runge kutta para sistema de odes
+    -> si me estan dando bien los resultados
+-> como hacer con los graficos
+-> si hay que hacer algo mas
+
+PUNTO 3
+??

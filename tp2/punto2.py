@@ -31,16 +31,13 @@ dN1dt = lambda t, N1, N2: r1*N1*(1 - (N1 + alpha*N2)/K1)
 'por eso es que lo multiplico por N2 (la cantidad de individuos de la especie 2)'
 
 #Species 2
-dN2dt = lambda t, N1, N2: r2*N2*(1 - (N2 + beta*N1)/K2)
+dN2dt = lambda t, N2, N1: r2*N2*(1 - (N2 + beta*N1)/K2)
 'beta -> el efecto que tiene la especie 1 sobre el crecimiento poblacional de la especie 2'
 
 # Parámetros
-r1 = 0.5
-r2 = 0.5
-alpha = 0.5
-beta = 0.5
-K1 = 100
-K2 = 100
+r1, r2 = 0.5, 0.7
+alpha, beta = 0.5, 0.8
+K1, K2 = 100, 130
 
 # Condiciones iniciales
 N1_0 = 10
@@ -52,6 +49,7 @@ t0 = 0
 # Paso
 h = 0.01
 n = 1000
+
 final_N1, final_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
 print(f'N1: {final_N1}, N2: {final_N2}')
 
