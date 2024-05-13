@@ -16,6 +16,8 @@ def runge_kutta4(f, t0, y0, h, n):
         t = t + h
     return y
 
+# def runge_kutta2(f, t0, y0, h, n):
+
 def euler(f, t0, y0, h, n):
     t = t0
     y = y0

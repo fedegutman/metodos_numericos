@@ -53,7 +53,7 @@ n = 1000
 final_N1, final_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
 print(f'N1: {final_N1}, N2: {final_N2}')
 
-# Cuantos parametros usar?
+# -> Cuantos parametros usar?
 
 # Grafico las isoclinas 
 '''
@@ -139,27 +139,7 @@ axis[1, 1].set_ylim(0, K1/alpha + 5)
 axis[1, 1].set_xlim(0, K2/beta + 5)
 axis[1, 1].set_title('Coexistencia')
 
-# Grafico el campo vectorial (NO FUNCA)
-
-'''
-N1_values = np.linspace(0, K1, 10) 
-N2_values = np.linspace(0, K2, 10) 
-
-for i in N1_values:
-    for j in N2_values:
-        dN1 = r1*i*(1 - (i + alpha*j)/K1)
-        dN2 = r2*j*(1 - (j + beta*i)/K2)
-        
-        # Normalizar los vectores
-        norm = np.hypot(dN1, dN2)
-        dN1 /= norm
-        dN2 /= norm
-
-        axis[0, 0].quiver(i, j, dN1, dN2, angles='xy', scale_units='xy', color='black')
-        axis[0, 1].quiver(i, j, dN1, dN2, angles='xy', scale_units='xy', color='black')
-        axis[1, 0].quiver(i, j, dN1, dN2, angles='xy', scale_units='xy', color='black')
-        axis[1, 1].quiver(i, j, dN1, dN2, angles='xy', scale_units='xy', color='black')
-'''
+# Grafico el campo vectorial
 
 plt.subplots_adjust(wspace=0.3, hspace=0.3)
 plt.show()
