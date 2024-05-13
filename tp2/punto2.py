@@ -47,7 +47,8 @@ N1 = K1 - alpha*N2
 N2 = K2 - beta*N1
 '''
 
-# Graficos
+# Graficos de las isoclinas de crecimiento poblacional cero
+
 figure, axis = plt.subplots(2, 2)
 
 for i in range(2):
@@ -56,37 +57,39 @@ for i in range(2):
         axis[i, j].set_ylabel('N2')
 
 # Caso 1 -> Gana la especie 1
-alpha = 1.2
-beta = 0.7
+alpha = 0.7
+beta = 1.2
 K1, K2 = 100, 100
 
-N1 = np.linspace(0, K1, 100)
-N2 = np.linspace(0, K2, 100)
+N2_values = np.linspace(0, K2, 1000)
+N1_isocline = K1 - alpha*N2_values
 
-N1_isocline = np.array([(K1 - alpha*N2) for N2 in N2])
-N2_isocline = np.array([(K2 - beta*N1) for N1 in N1])
+N1_values = np.linspace(0, K1, 1000)
+N2_isocline = K2 - beta*N1_values
 
-axis[0, 0].plot(N1_isocline, N2, label='Especie 1', color='blue')
-axis[0, 0].plot(N1, N2_isocline, label='Especie 2', color='green')
-axis[0, 0].set_ylim(0, K1/beta)
-axis[0, 0].set_xlim(0, K1)
+axis[0, 0].plot(N1_isocline, N2_values, label='Especie 1', color='blue')
+axis[0, 0].plot(N1_values, N2_isocline, label='Especie 2', color='green')
+axis[0, 0].set_ylim(0, K1/alpha + 5)
+axis[0, 0].set_xlim(0, K1 + 5)
 axis[0, 0].legend()
 axis[0, 0].set_title('Gana especie 1')
 
 # Caso 2 -> Gana la especie 2
 
-alpha = 0.7
-beta = 1.1
-K1, K2 = 70, 75
+alpha = 1.5
+beta = 0.5
+K1, K2 = 100, 100
 
-N1 = np.linspace(0, K1, 100)
-N2 = np.linspace(0, K2, 100)
+N2 = np.linspace(0, K2, 1000)
+N1_isocline = np.array([(K1 - alpha*n2) for n2 in N2])
 
-N1_isocline = np.array([(K1 - alpha*N2) for N2 in N2])
-N2_isocline = np.array([(K2 - beta*N1) for N1 in N1])
+N1 = np.linspace(0, K1, 1000)
+N2_isocline = np.array([(K2 - beta*n1) for n1 in N1])
 
-axis[0, 1].plot(N2, N1_isocline, label='Especie 1', color='blue')
+axis[0, 1].plot(N1_isocline, N2, label='Especie 1', color='blue')
 axis[0, 1].plot(N1, N2_isocline, label='Especie 2', color='green')
+axis[0, 1].set_ylim(0, K1/beta + 5)
+axis[0, 1].set_xlim(0, K1 + 5)
 axis[0, 1].set_title('Gana especie 2')
 
 plt.show()
