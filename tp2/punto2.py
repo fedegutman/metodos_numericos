@@ -57,8 +57,8 @@ for i in range(2):
 
 # Caso 1 -> Gana la especie 1
 alpha = 1.2
-beta = 0.5
-K1, K2 = 70, 75
+beta = 0.7
+K1, K2 = 100, 100
 
 N1 = np.linspace(0, K1, 100)
 N2 = np.linspace(0, K2, 100)
@@ -66,8 +66,10 @@ N2 = np.linspace(0, K2, 100)
 N1_isocline = np.array([(K1 - alpha*N2) for N2 in N2])
 N2_isocline = np.array([(K2 - beta*N1) for N1 in N1])
 
-axis[0, 0].plot(N2, N1_isocline, label='Especie 1', color='blue')
+axis[0, 0].plot(N1_isocline, N2, label='Especie 1', color='blue')
 axis[0, 0].plot(N1, N2_isocline, label='Especie 2', color='green')
+axis[0, 0].set_ylim(0, K1/beta)
+axis[0, 0].set_xlim(0, K1)
 axis[0, 0].legend()
 axis[0, 0].set_title('Gana especie 1')
 
