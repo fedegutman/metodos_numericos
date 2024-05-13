@@ -25,12 +25,12 @@ def runge_kutta4_system(f1, f2, t0, y0, z0, h, n):
 
 # Defino las ecuaciones de competencia de Lotka-Volterra
 
-# Species 1
+# Especie 1
 dN1dt = lambda t, N1, N2: r1*N1*(1 - (N1 + alpha*N2)/K1)
 'alpha -> el efecto que tiene un individuo especie 2 sobre el crecimiento poblacional de la especie 1'
 'por eso es que lo multiplico por N2 (la cantidad de individuos de la especie 2)'
 
-#Species 2
+# Especie 2
 dN2dt = lambda t, N2, N1: r2*N2*(1 - (N2 + beta*N1)/K2)
 'beta -> el efecto que tiene la especie 1 sobre el crecimiento poblacional de la especie 2'
 
@@ -53,7 +53,7 @@ n = 1000
 final_N1, final_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
 print(f'N1: {final_N1}, N2: {final_N2}')
 
-# CHEQUEAR ESTO QUE CREO QUE ESTA MAL
+# Cuantos parametros usar?
 
 # Grafico las isoclinas 
 '''
