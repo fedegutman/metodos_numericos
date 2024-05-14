@@ -84,8 +84,8 @@ figure2, axis2 = plt.subplots(2, 2)
 
 for i in range(2):
     for j in range(2):
-        axis1[i, j].set_xlabel('Tiempo')
-        axis1[i, j].set_ylabel('Población')
+        axis2[i, j].set_xlabel('Tiempo')
+        axis2[i, j].set_ylabel('Población')
 
 # Caso 1 -> Gana la especie 1
 alpha = 0.7
@@ -175,9 +175,9 @@ axis2[1, 0].legend()
 axis2[1, 0].set_title('Gana cualquiera (Especie 1)')
 
 # Caso 4 -> Coexistencia
-alpha = 1.2
+alpha = 0.6
 beta = 0.6
-K1, K2 = 80, 60
+K1, K2 = 80, 78 # preguntar si esta bien esto
 
 N1_values = np.linspace(0, K2/beta, 1000)
 
