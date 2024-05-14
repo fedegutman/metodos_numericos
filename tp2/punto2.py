@@ -65,14 +65,27 @@ N1 = K1 - alpha*N2
 N2 = K2 - beta*N1
 '''
 
-# Graficos de las isoclinas de crecimiento poblacional cero
+# Graficos de las isoclinas de crecimiento poblacional cero (y grafico las trayectorias)
 
-figure, axis = plt.subplots(2, 2)
+r1, r2 = 0.3, 0.3
+N1_0, N2_0 = 10, 10
+t0 = 0
+tf = np.linspace(1, 50, 100)
+h = 0.01
+
+figure1, axis1 = plt.subplots(2, 2)
 
 for i in range(2):
     for j in range(2):
-        axis[i, j].set_xlabel('N1')
-        axis[i, j].set_ylabel('N2')
+        axis1[i, j].set_xlabel('N1')
+        axis1[i, j].set_ylabel('N2')
+
+figure2, axis2 = plt.subplots(2, 2)
+
+for i in range(2):
+    for j in range(2):
+        axis1[i, j].set_xlabel('Tiempo')
+        axis1[i, j].set_ylabel('Población')
 
 # Caso 1 -> Gana la especie 1
 alpha = 0.7
@@ -84,12 +97,25 @@ N1_values = np.linspace(0, K1, 1000)
 S1_isocline = (N1_values - K1)/(- alpha)
 S2_isocline = K2 - beta*N1_values
 
-axis[0, 0].plot(N1_values, S1_isocline, label='Especie 1', color='blue')
-axis[0, 0].plot(N1_values, S2_isocline, label='Especie 2', color='green')
-axis[0, 0].set_ylim(0, K1/alpha + 5)
-axis[0, 0].set_xlim(0, K1 + 5)
-axis[0, 0].legend()
-axis[0, 0].set_title('Gana especie 1')
+axis1[0, 0].plot(N1_values, S1_isocline, label='Especie 1', color='blue')
+axis1[0, 0].plot(N1_values, S2_isocline, label='Especie 2', color='green')
+axis1[0, 0].set_ylim(0, K1/alpha + 5)
+axis1[0, 0].set_xlim(0, K1 + 5)
+axis1[0, 0].legend()
+axis1[0, 0].set_title('Gana especie 1')
+
+N1 = []
+N2 = []
+
+for t in tf:
+    n = int((t-t0)/h)
+    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
+    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+
+axis2[0, 0].plot(tf, np.array(N1), label='Especie 1', color='blue')
+axis2[0, 0].plot(tf, np.array(N2), label='Especie 2', color='green')
+axis2[0, 0].legend()
+axis2[0, 0].set_title('Gana especie 1')
 
 # Caso 2 -> Gana la especie 2
 alpha = 1.5
@@ -101,11 +127,23 @@ N1_values = np.linspace(0, K2/beta, 1000) # preguntar si esta bien esto
 S1_isocline = (N1_values - K1)/(- alpha)
 S2_isocline = K2 - beta*N1_values
 
-axis[0, 1].plot(N1_values, S1_isocline, label='Especie 1', color='blue')
-axis[0, 1].plot(N1_values, S2_isocline, label='Especie 2', color='green')
-axis[0, 1].set_ylim(0, K2 + 5)
-axis[0, 1].set_xlim(0, K2/beta + 5)
-axis[0, 1].set_title('Gana especie 2')
+axis1[0, 1].plot(N1_values, S1_isocline, label='Especie 1', color='blue')
+axis1[0, 1].plot(N1_values, S2_isocline, label='Especie 2', color='green')
+axis1[0, 1].set_ylim(0, K2 + 5)
+axis1[0, 1].set_xlim(0, K2/beta + 5)
+axis1[0, 1].set_title('Gana especie 2')
+
+N1 = []
+N2 = []
+
+for t in tf:
+    n = int((t-t0)/h)
+    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
+    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+
+axis2[0, 1].plot(tf, np.array(N1), label='Especie 1', color='blue')
+axis2[0, 1].plot(tf, np.array(N2), label='Especie 2', color='green')
+axis2[0, 1].set_title('Gana especie 2')
 
 # Caso 3 -> Puede ganar cualquiera
 alpha = 1.6
@@ -117,11 +155,24 @@ N1_values = np.linspace(0, K1, 1000)
 S1_isocline = (N1_values - K1)/(- alpha)
 S2_isocline = K2 - beta*N1_values
 
-axis[1, 0].plot(N1_values, S1_isocline, label='Especie 1', color='blue')
-axis[1, 0].plot(N1_values, S2_isocline, label='Especie 2', color='green')
-axis[1, 0].set_ylim(0, K1/alpha + 5)
-axis[1, 0].set_xlim(0, K1 + 5)
-axis[1, 0].set_title('Puede ganar cualquiera')
+axis1[1, 0].plot(N1_values, S1_isocline, label='Especie 1', color='blue')
+axis1[1, 0].plot(N1_values, S2_isocline, label='Especie 2', color='green')
+axis1[1, 0].set_ylim(0, K1/alpha + 5)
+axis1[1, 0].set_xlim(0, K1 + 5)
+axis1[1, 0].set_title('Puede ganar cualquiera')
+
+N1 = []
+N2 = []
+
+for t in tf:
+    n = int((t-t0)/h)
+    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
+    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+
+axis2[1, 0].plot(tf, np.array(N1), label='Especie 1', color='blue')
+axis2[1, 0].plot(tf, np.array(N2), label='Especie 2', color='green')
+axis2[1, 0].legend()
+axis2[1, 0].set_title('Gana cualquiera (Especie 1)')
 
 # Caso 4 -> Coexistencia
 alpha = 1.2
@@ -133,11 +184,24 @@ N1_values = np.linspace(0, K2/beta, 1000)
 S1_isocline = (N1_values - K1)/(- alpha)
 S2_isocline = K2 - beta*N1_values
 
-axis[1, 1].plot(N1_values, S1_isocline, label='Especie 1', color='blue')
-axis[1, 1].plot(N1_values, S2_isocline, label='Especie 2', color='green')
-axis[1, 1].set_ylim(0, K1/alpha + 5)
-axis[1, 1].set_xlim(0, K2/beta + 5)
-axis[1, 1].set_title('Coexistencia')
+axis1[1, 1].plot(N1_values, S1_isocline, label='Especie 1', color='blue')
+axis1[1, 1].plot(N1_values, S2_isocline, label='Especie 2', color='green')
+axis1[1, 1].set_ylim(0, K1/alpha + 5)
+axis1[1, 1].set_xlim(0, K2/beta + 5)
+axis1[1, 1].set_title('Coexistencia')
+
+N1 = []
+N2 = []
+
+for t in tf:
+    n = int((t-t0)/h)
+    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
+    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+
+axis2[1, 1].plot(tf, np.array(N1), label='Especie 1', color='blue')
+axis2[1, 1].plot(tf, np.array(N2), label='Especie 2', color='green')
+axis2[1, 1].legend()
+axis2[1, 1].set_title('Coexistencia')
 
 # Grafico el campo vectorial
 
