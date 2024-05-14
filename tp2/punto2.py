@@ -180,7 +180,6 @@ for t in tf:
 
 axis2[1, 0].plot(tf, np.array(N1), label='Especie 1', color='blue')
 axis2[1, 0].plot(tf, np.array(N2), label='Especie 2', color='green')
-axis2[1, 0].legend()
 axis2[1, 0].set_title('Gana cualquiera (Especie 1)')
 
 # Caso 4 -> Coexistencia
@@ -212,7 +211,6 @@ for t in tf:
 
 axis2[1, 1].plot(tf, np.array(N1), label='Especie 1', color='blue')
 axis2[1, 1].plot(tf, np.array(N2), label='Especie 2', color='green')
-axis2[1, 1].legend()
 axis2[1, 1].set_title('Coexistencia')
 
 figure1.subplots_adjust(wspace=0.3, hspace=0.3)
