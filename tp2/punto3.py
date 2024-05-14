@@ -134,8 +134,32 @@ plt.legend()
 
 # Grafico los campos vectoriales
 N1, N2 = np.meshgrid(N, N)
-dNdt = r*N1*(1 - (N1/K)) - alpha*N1*N2
-dPdt = beta*N1*N2 - q*N2
-plt.streamplot(N1, N2, dNdt, dPdt, density=1, color='black')
+plt.streamplot(N1, N2, r*N1*(1 - (N1/K)) - alpha*N1*N2, beta*N1*N2 - q*N2, density=1, color='black')
 
+plt.show()
+
+# Grafico las trayectorias del sistema
+figure, axis = plt.subplots(2, 1)
+
+N0, P0 = 5, 5
+t0 = 0
+tf = np.linspace(1, 20, 100)
+h = 0.01
+
+prey, predator = [], []
+
+for t in tf:
+    n = int((t-t0)/h)
+    prey.append(runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)[0])
+    predator.append(runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)[1])
+
+axis[0].plot(tf, prey, label='Presa', color='blue')
+axis[0].set_xlabel('Tiempo')
+axis[0].set_ylabel('Población de presas')
+
+axis[1].plot(tf, predator, label='Predador', color='red')
+axis[1].set_xlabel('Tiempo')
+axis[1].set_ylabel('Población de predadores')
+
+figure.subplots_adjust(hspace=0.3)
 plt.show()
