@@ -102,3 +102,40 @@ axis[1].set_ylabel('Población de predadores')
 
 figure.subplots_adjust(hspace=0.3)
 plt.show()
+
+# Lotka-Volterra Extendidas (LVE)
+
+dNdt = lambda t, N, P: r*N*(1 - (N/K)) - alpha*N*P
+dPdt = lambda t, N, P: beta*N*P - q*P
+
+# Grafico las isoclinas 
+'''
+0 = r*N*(1 - (N/K)) - alpha*N*P
+0 = beta*N*P - q*P
+
+Me queda que:
+P = r/alpha * (1 - N/K)
+N = q/beta
+'''
+
+r, alpha = 1.3, 0.5
+q, beta = 1.1, 0.3
+K = 10
+N = np.linspace(0, 10, 100)
+
+isoclina_presa = np.array([r/alpha * (1 - n/10) for n in N])
+isoclina_predador = np.array([q/beta for _ in N])
+
+plt.plot(N, isoclina_presa, label='Crecimiento poblacional cero de presas', color = 'blue')
+plt.plot(isoclina_predador, N, label='Crecimiento poblacional cero de predadores', color = 'red')
+plt.xlabel('Población de presas')
+plt.ylabel('Población de predadores')
+plt.legend()
+
+# Grafico los campos vectoriales
+N1, N2 = np.meshgrid(N, N)
+dNdt = r*N1*(1 - (N1/K)) - alpha*N1*N2
+dPdt = beta*N1*N2 - q*N2
+plt.streamplot(N1, N2, dNdt, dPdt, density=1, color='black')
+
+plt.show()
