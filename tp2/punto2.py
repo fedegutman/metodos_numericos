@@ -104,7 +104,7 @@ axis1[0, 0].set_xlim(0, K1 + 5)
 axis1[0, 0].legend()
 axis1[0, 0].set_title('Gana especie 1')
 
-x, y = np.meshgrid(N1_values, N1_values)
+x, y = np.meshgrid(np.linspace(0, K1/alpha +5, 100), np.linspace(0, K1 + 50, 100)) # para que me cubra todo el grafico
 axis1[0, 0].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=1, color='black')
 
 N1 = []
@@ -136,8 +136,8 @@ axis1[0, 1].set_ylim(0, K2 + 5)
 axis1[0, 1].set_xlim(0, K2/beta + 5)
 axis1[0, 1].set_title('Gana especie 2')
 
-x, y = np.meshgrid(N1_values, N1_values)
-axis1[0, 1].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=1, color='black')
+x, y = np.meshgrid(np.linspace(0, K2/beta + 5, 100), np.linspace(0, K2 + 5, 100))
+axis1[0, 1].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=0.7, color='black')
 
 N1 = []
 N2 = []
@@ -167,8 +167,8 @@ axis1[1, 0].set_ylim(0, K1/alpha + 5)
 axis1[1, 0].set_xlim(0, K1 + 5)
 axis1[1, 0].set_title('Puede ganar cualquiera')
 
-x, y = np.meshgrid(N1_values, N1_values)
-axis1[1, 0].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=1, color='black')
+x, y = np.meshgrid(np.linspace(0, K1 + 5, 100), np.linspace(0, K1/alpha + 5, 100))
+axis1[1, 0].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=0.7, color='black')
 
 N1 = []
 N2 = []
@@ -199,8 +199,8 @@ axis1[1, 1].set_ylim(0, K1/alpha + 5)
 axis1[1, 1].set_xlim(0, K2/beta + 5)
 axis1[1, 1].set_title('Coexistencia')
 
-x, y = np.meshgrid(N1_values, N1_values)
-axis1[1, 1].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=1, color='black')
+x, y = np.meshgrid(np.linspace(0, K2/beta + 5, 100), np.linspace(0, K1/alpha + 5, 100))
+axis1[1, 1].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=0.7, color='black')
 
 N1 = []
 N2 = []
