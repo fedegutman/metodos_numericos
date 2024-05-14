@@ -16,7 +16,16 @@ def runge_kutta4(f, t0, y0, h, n):
         t = t + h
     return y
 
-# def runge_kutta2(f, t0, y0, h, n):
+def midpoint_runge_kutta(f, t0, y0, h, n):
+    t = t0
+    y = y0
+    for i in range(n):
+        k1 = h*f(t, y)
+        k2 = h*f(t + h/2, y + k1/2)
+        y = y + k2
+        t = t + h
+    return y
+    
 
 def euler(f, t0, y0, h, n):
     t = t0
@@ -138,18 +147,23 @@ n = int(t / h)
 
 exact_exp = Nexp(N0, r, t)
 runge_kutta_exp = runge_kutta4(dNdt_exp, 0, N0, h, n)
+midpoint_runge_kutta_exp = midpoint_runge_kutta(dNdt_exp, 0, N0, h, n)
 euler_exp = euler(dNdt_exp, 0, N0, h, n)
-
-print(f'Exacta: {exact_exp}, runge kutta: {runge_kutta_exp}, euler: {euler_exp}')
+print('MODELO EXPONENCIAL')
+print(f'Exacta: {exact_exp}, runge kutta: {runge_kutta_exp}, euler: {euler_exp}, runge kutta de punto medio: {midpoint_runge_kutta_exp}')
 print(f'Diferencia entre exacta y runge kutta: {abs(exact_exp - runge_kutta_exp)}')
+print(f'Diferencia entre exacta y runge kutta de punto medio: {abs(exact_exp - midpoint_runge_kutta_exp)}')
 print(f'Diferencia entre exacta y euler: {abs(exact_exp - euler_exp)}\n\n')
 
 exact_log = Nlog(N0, r, K, t)
 runge_kutta_log = runge_kutta4(dNdt_log, 0, N0, h, n)
+midpoint_runge_kutta_log = midpoint_runge_kutta(dNdt_log, 0, N0, h, n)
 euler_log = euler(dNdt_log, 0, N0, h, n)
 
-print(f'Exacta: {exact_log}, runge kutta: {runge_kutta_log}, euler: {euler_log}')
+print('MODELO LOGISTICO')
+print(f'Exacta: {exact_log}, runge kutta: {runge_kutta_log}, euler: {euler_log}, runge kutta de punto medio: {midpoint_runge_kutta_log}')
 print(f'Diferencia entre exacta y runge kutta: {abs(exact_log - runge_kutta_log)}')
+print(f'Diferencia entre exacta y runge kutta de punto medio: {abs(exact_log - midpoint_runge_kutta_log)}')
 print(f'Diferencia entre exacta y euler: {abs(exact_log - euler_log)}')
 
 # Busco punto de equilibrio/punto fijo de la ecuacion logistica
@@ -165,7 +179,7 @@ Entonces r = 0 (tasa de crecimiento nula) N = 0 (arranco sin poblacion) o N = K 
 r = 0
 N = 2
 K = 15
-print(f'Para r = 0 (N = 0, K = 15): dN/dt {r*N * ((K - N)/K)}')
+print(f'Para r = 0 (N = 0, K = 15): {r*N * ((K - N)/K)}')
 
 # N = 0
 r = 0.1

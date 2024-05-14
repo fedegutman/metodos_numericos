@@ -41,8 +41,3 @@ for i in range(2):
         axis[i, j].set_ylabel('N2')
 
 # Caso 1 ->
-
-
-
-
-
