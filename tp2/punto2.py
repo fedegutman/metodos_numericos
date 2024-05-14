@@ -104,6 +104,9 @@ axis1[0, 0].set_xlim(0, K1 + 5)
 axis1[0, 0].legend()
 axis1[0, 0].set_title('Gana especie 1')
 
+x, y = np.meshgrid(N1_values, N1_values)
+axis1[0, 0].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=1, color='black')
+
 N1 = []
 N2 = []
 
@@ -133,6 +136,9 @@ axis1[0, 1].set_ylim(0, K2 + 5)
 axis1[0, 1].set_xlim(0, K2/beta + 5)
 axis1[0, 1].set_title('Gana especie 2')
 
+x, y = np.meshgrid(N1_values, N1_values)
+axis1[0, 1].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=1, color='black')
+
 N1 = []
 N2 = []
 
@@ -146,9 +152,9 @@ axis2[0, 1].plot(tf, np.array(N2), label='Especie 2', color='green')
 axis2[0, 1].set_title('Gana especie 2')
 
 # Caso 3 -> Puede ganar cualquiera
-alpha = 1.6
+alpha = 1.4
 beta = 1.3
-K1, K2 = 40, 30
+K1, K2 = 40, 40
 
 N1_values = np.linspace(0, K1, 1000)
 
@@ -160,6 +166,9 @@ axis1[1, 0].plot(N1_values, S2_isocline, label='Especie 2', color='green')
 axis1[1, 0].set_ylim(0, K1/alpha + 5)
 axis1[1, 0].set_xlim(0, K1 + 5)
 axis1[1, 0].set_title('Puede ganar cualquiera')
+
+x, y = np.meshgrid(N1_values, N1_values)
+axis1[1, 0].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=1, color='black')
 
 N1 = []
 N2 = []
@@ -190,6 +199,9 @@ axis1[1, 1].set_ylim(0, K1/alpha + 5)
 axis1[1, 1].set_xlim(0, K2/beta + 5)
 axis1[1, 1].set_title('Coexistencia')
 
+x, y = np.meshgrid(N1_values, N1_values)
+axis1[1, 1].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=1, color='black')
+
 N1 = []
 N2 = []
 
@@ -203,7 +215,7 @@ axis2[1, 1].plot(tf, np.array(N2), label='Especie 2', color='green')
 axis2[1, 1].legend()
 axis2[1, 1].set_title('Coexistencia')
 
-# Grafico el campo vectorial
+figure1.subplots_adjust(wspace=0.3, hspace=0.3)
+figure2.subplots_adjust(wspace=0.3, hspace=0.3)
 
-plt.subplots_adjust(wspace=0.3, hspace=0.3)
 plt.show()
