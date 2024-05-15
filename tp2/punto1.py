@@ -90,7 +90,7 @@ poblacion_log = np.array([Nlog(N0, r, K, i) for i in t])
 
 axis[2].plot(t, poblacion_exp, label=f'Crecimiento exponencial')
 axis[2].plot(t, poblacion_log, label=f'Crecimiento logístico')
-# axis[2].set_yscale('log')
+axis[2].set_yscale('log')
 axis[2].set_title(f'N0={N0}, r={r}, K={K}')
 
 plt.show()
