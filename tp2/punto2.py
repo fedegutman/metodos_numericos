@@ -135,8 +135,11 @@ x, y = np.meshgrid(np.linspace(0, K1/alpha +5, 100), np.linspace(0, K1 + 50, 100
 axis1[0, 0].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=1, color='black')
 '''
 
-x, y = np.meshgrid(np.linspace(0, K1, 15), np.linspace(0, K1 + 50, 10))
-axis1[0, 0].quiver(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), color='black')
+x, y = np.meshgrid(np.linspace(0, K1, 15), np.linspace(0, K1/alpha, 15))
+magnitude = np.sqrt((r1*x*(1 - (x + alpha*y)/K1))**2 + (r2*y*(1 - (y + beta*x)/K2))**2)
+normalized_r1 = r1*x*(1 - (x + alpha*y)/K1) / magnitude
+normalized_r2 = r2*y*(1 - (y + beta*x)/K2) / magnitude
+axis1[0, 0].quiver(x, y, normalized_r1, normalized_r2, color='black')
 
 N1 = []
 N2 = []
@@ -166,9 +169,16 @@ axis1[0, 1].plot(N1_values, S2_isocline, label='Especie 2', color='green')
 axis1[0, 1].set_ylim(0, K2 + 5)
 axis1[0, 1].set_xlim(0, K2/beta + 5)
 axis1[0, 1].set_title('Gana especie 2')
-
+'''
 x, y = np.meshgrid(np.linspace(0, K2/beta + 5, 100), np.linspace(0, K2 + 5, 100))
 axis1[0, 1].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=0.7, color='black')
+'''
+
+x, y = np.meshgrid(np.linspace(0, K2/beta, 15), np.linspace(0, K2, 15))
+magnitude = np.sqrt((r1*x*(1 - (x + alpha*y)/K1))**2 + (r2*y*(1 - (y + beta*x)/K2))**2)
+normalized_r1 = r1*x*(1 - (x + alpha*y)/K1) / magnitude
+normalized_r2 = r2*y*(1 - (y + beta*x)/K2) / magnitude
+axis1[0, 1].quiver(x, y, normalized_r1, normalized_r2, color='black')
 
 N1 = []
 N2 = []
@@ -194,12 +204,20 @@ S2_isocline = K2 - beta*N1_values
 
 axis1[1, 0].plot(N1_values, S1_isocline, label='Especie 1', color='blue')
 axis1[1, 0].plot(N1_values, S2_isocline, label='Especie 2', color='green')
-axis1[1, 0].set_ylim(0, K1/alpha + 5)
+axis1[1, 0].set_ylim(0, K1 + 2)
 axis1[1, 0].set_xlim(0, K1 + 5)
 axis1[1, 0].set_title('Puede ganar cualquiera')
 
+'''
 x, y = np.meshgrid(np.linspace(0, K1 + 5, 100), np.linspace(0, K1/alpha + 5, 100))
 axis1[1, 0].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=0.7, color='black')
+'''
+
+x, y = np.meshgrid(np.linspace(0, K1 + 3, 15), np.linspace(0, K2, 15))
+magnitude = np.sqrt((r1*x*(1 - (x + alpha*y)/K1))**2 + (r2*y*(1 - (y + beta*x)/K2))**2)
+normalized_r1 = r1*x*(1 - (x + alpha*y)/K1) / magnitude
+normalized_r2 = r2*y*(1 - (y + beta*x)/K2) / magnitude
+axis1[1, 0].quiver(x, y, normalized_r1, normalized_r2, color='black')
 
 N1 = []
 N2 = []
@@ -229,8 +247,16 @@ axis1[1, 1].set_ylim(0, K1/alpha + 5)
 axis1[1, 1].set_xlim(0, K2/beta + 5)
 axis1[1, 1].set_title('Coexistencia')
 
+'''
 x, y = np.meshgrid(np.linspace(0, K2/beta + 5, 100), np.linspace(0, K1/alpha + 5, 100))
 axis1[1, 1].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=0.7, color='black')
+'''
+
+x, y = np.meshgrid(np.linspace(0, K2/beta + 2, 15), np.linspace(0, K1/alpha + 2, 15))
+magnitude = np.sqrt((r1*x*(1 - (x + alpha*y)/K1))**2 + (r2*y*(1 - (y + beta*x)/K2))**2)
+normalized_r1 = r1*x*(1 - (x + alpha*y)/K1) / magnitude
+normalized_r2 = r2*y*(1 - (y + beta*x)/K2) / magnitude
+axis1[1, 1].quiver(x, y, normalized_r1, normalized_r2, color='black')
 
 N1 = []
 N2 = []
