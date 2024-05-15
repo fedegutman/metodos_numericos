@@ -10,7 +10,7 @@ def runge_kutta4_system(f1, f2, t0, x0, y0, h, n):
         l1 = h*f2(x, y, t)
         
         k2 = h*f1(x + k1/2, y + l1/2, t + h/2)
-        l2 = h*f2(t + k1/2, y + l1/2, t + h/2)
+        l2 = h*f2(x + k1/2, y + l1/2, t + h/2)
         
         k3 = h*f1(x + k2/2, y + l2/2, t + h/2)
         l3 = h*f2(x + k2/2, y + l2/2, t + h/2)
@@ -76,9 +76,10 @@ plt.streamplot(N1, N2, dN1dt, dN2dt, density=1, color='black')
 
 plt.show()
 
-# Grafico las trayectorias del sistema
+# Grafico las trayectorias del sistema y el diagrama de fases
 
 figure, axis = plt.subplots(2, 1)
+figure2, axis2 = plt.subplots()
 
 N0, P0 = 5, 5
 t0 = 0
@@ -102,6 +103,9 @@ axis[1].set_ylabel('Población de predadores')
 
 figure.subplots_adjust(hspace=0.3)
 plt.show()
+
+# Ver ejes diagrama de fases
+axis2.plot(prey, predator, label='Diagrama de fases')
 
 # Lotka-Volterra Extendidas (LVE)
 
