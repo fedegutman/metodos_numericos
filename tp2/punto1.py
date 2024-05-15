@@ -93,6 +93,7 @@ axis[2].plot(t, poblacion_log, label=f'Crecimiento logístico')
 axis[2].set_yscale('log')
 axis[2].set_title(f'N0={N0}, r={r}, K={K}')
 
+figure.subplots_adjust(wspace=0.5, hspace=0.3)
 plt.show()
 
 # Grafico la variación poblacional en función del tamaño poblacional (dN/dt vs N) y estudió la variación de los parámetros

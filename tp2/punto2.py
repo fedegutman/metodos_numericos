@@ -81,11 +81,6 @@ t0 = 0
 h = 0.01
 n = 1000
 
-final_N1, final_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
-print(f'N1: {final_N1}, N2: {final_N2}')
-
-# -> Cuantos parametros usar?
-
 # Grafico las isoclinas 
 '''
 0 = r1*N1*(1 - (N1 + alpha*N2)/K1)
@@ -135,8 +130,13 @@ axis1[0, 0].set_xlim(0, K1 + 5)
 axis1[0, 0].legend()
 axis1[0, 0].set_title('Gana especie 1')
 
+'''
 x, y = np.meshgrid(np.linspace(0, K1/alpha +5, 100), np.linspace(0, K1 + 50, 100)) # para que me cubra todo el grafico
 axis1[0, 0].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=1, color='black')
+'''
+
+x, y = np.meshgrid(np.linspace(0, K1, 15), np.linspace(0, K1 + 50, 10))
+axis1[0, 0].quiver(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), color='black')
 
 N1 = []
 N2 = []
