@@ -135,7 +135,7 @@ x, y = np.meshgrid(np.linspace(0, K1/alpha +5, 100), np.linspace(0, K1 + 50, 100
 axis1[0, 0].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=1, color='black')
 '''
 
-x, y = np.meshgrid(np.linspace(0, K1, 15), np.linspace(0, K1/alpha, 15))
+x, y = np.meshgrid(np.linspace(0.1, K1, 15), np.linspace(0.1, K1/alpha, 15))
 magnitude = np.sqrt((r1*x*(1 - (x + alpha*y)/K1))**2 + (r2*y*(1 - (y + beta*x)/K2))**2)
 normalized_r1 = r1*x*(1 - (x + alpha*y)/K1) / magnitude
 normalized_r2 = r2*y*(1 - (y + beta*x)/K2) / magnitude
@@ -174,7 +174,7 @@ x, y = np.meshgrid(np.linspace(0, K2/beta + 5, 100), np.linspace(0, K2 + 5, 100)
 axis1[0, 1].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=0.7, color='black')
 '''
 
-x, y = np.meshgrid(np.linspace(0, K2/beta, 15), np.linspace(0, K2, 15))
+x, y = np.meshgrid(np.linspace(0.1, K2/beta, 15), np.linspace(0.1, K2, 15))
 magnitude = np.sqrt((r1*x*(1 - (x + alpha*y)/K1))**2 + (r2*y*(1 - (y + beta*x)/K2))**2)
 normalized_r1 = r1*x*(1 - (x + alpha*y)/K1) / magnitude
 normalized_r2 = r2*y*(1 - (y + beta*x)/K2) / magnitude
@@ -213,7 +213,7 @@ x, y = np.meshgrid(np.linspace(0, K1 + 5, 100), np.linspace(0, K1/alpha + 5, 100
 axis1[1, 0].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=0.7, color='black')
 '''
 
-x, y = np.meshgrid(np.linspace(0, K1 + 3, 15), np.linspace(0, K2, 15))
+x, y = np.meshgrid(np.linspace(0.1, K1 + 3, 15), np.linspace(0.1, K2, 15))
 magnitude = np.sqrt((r1*x*(1 - (x + alpha*y)/K1))**2 + (r2*y*(1 - (y + beta*x)/K2))**2)
 normalized_r1 = r1*x*(1 - (x + alpha*y)/K1) / magnitude
 normalized_r2 = r2*y*(1 - (y + beta*x)/K2) / magnitude
@@ -229,7 +229,7 @@ for t in tf:
 
 axis2[1, 0].plot(tf, np.array(N1), label='Especie 1', color='blue')
 axis2[1, 0].plot(tf, np.array(N2), label='Especie 2', color='green')
-axis2[1, 0].set_title('Gana cualquiera (Especie 1)')
+axis2[1, 0].set_title('Gana cualquiera (Especie 2)')
 
 # Caso 4 -> Coexistencia
 alpha = 0.6
@@ -252,7 +252,7 @@ x, y = np.meshgrid(np.linspace(0, K2/beta + 5, 100), np.linspace(0, K1/alpha + 5
 axis1[1, 1].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=0.7, color='black')
 '''
 
-x, y = np.meshgrid(np.linspace(0, K2/beta + 2, 15), np.linspace(0, K1/alpha + 2, 15))
+x, y = np.meshgrid(np.linspace(0.1, K2/beta + 2, 15), np.linspace(0.1, K1/alpha + 2, 15))
 magnitude = np.sqrt((r1*x*(1 - (x + alpha*y)/K1))**2 + (r2*y*(1 - (y + beta*x)/K2))**2)
 normalized_r1 = r1*x*(1 - (x + alpha*y)/K1) / magnitude
 normalized_r2 = r2*y*(1 - (y + beta*x)/K2) / magnitude
