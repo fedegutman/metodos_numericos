@@ -68,8 +68,8 @@ axis[0].set_title(f'N0={N0}, r={r}, K={K}')
 
 # Parámetros 2
 N0 = 1
-r = 0.1
-K = 30
+r = 0.05
+K = 200
 
 poblacion_exp = np.array([Nexp(N0, r, i) for i in t])
 poblacion_log = np.array([Nlog(N0, r, K, i) for i in t])
