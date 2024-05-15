@@ -67,7 +67,7 @@ axis[0].set_ylabel('Población')
 axis[0].set_title(f'N0={N0}, r={r}, K={K}')
 
 # Parámetros 2
-N0 = 1
+N0 = 2
 r = 0.05
 K = 200
 
@@ -80,7 +80,6 @@ axis[1].set_yscale('log')
 axis[1].set_title(f'N0={N0}, r={r}, K={K}')
 
 # Parámetros 3
-
 N0 = 20
 r = -0.1
 K = 50

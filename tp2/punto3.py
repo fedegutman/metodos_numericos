@@ -69,10 +69,12 @@ plt.ylabel('Población de predadores')
 plt.legend()
 
 # Grafico los campos vectoriales
-N1, N2 = np.meshgrid(N, N)
-dN1dt = r*N1 - alpha*N1*N2
-dN2dt = beta*N1*N2 - q*N2
-plt.streamplot(N1, N2, dN1dt, dN2dt, density=1, color='black')
+
+N1, N2 = np.meshgrid(np.linspace(0.1, 10, 15), np.linspace(0.1, 10, 15))
+magnitude = np.sqrt((r*N1 - alpha*N1*N2)**2 + (beta*N1*N2 - q*N2)**2)
+normalized_r1 = (r*N1 - alpha*N1*N2) / magnitude
+normalized_r2 = (beta*N1*N2 - q*N2) / magnitude
+plt.quiver(N1, N2, normalized_r1, normalized_r2, color='black',)
 
 plt.show()
 
@@ -102,9 +104,8 @@ figure.subplots_adjust(hspace=0.3)
 plt.show()
 
 # Grafico el diagrama de fases
-
+alpha = 1.1
 prey, predator = [], []
-
 for t in tf:
     n = int((t-t0)/h)
     prey.append(runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)[0])
@@ -114,7 +115,6 @@ plt.plot(prey, predator, label='Diagrama de fases')
 
 plt.xlabel('Población de presas')
 plt.ylabel('Población de predadores')
-# V = lambda N, P: beta * N - q*np.log(N) - alpha * P + r*np.log(P)
 plt.show()
 
 
