@@ -25,7 +25,6 @@ def midpoint_runge_kutta(f, t0, y0, h, n):
         y = y + k2
         t = t + h
     return y
-    
 
 def euler(f, t0, y0, h, n):
     t = t0
@@ -48,12 +47,12 @@ Nexp = lambda N0, r, t: N0 * exp(r*t)
 Nlog = lambda N0, r, K, t: K / (1 + (K/N0 - 1) * exp(-r*t))
 
 # Grafico tamaño poblacional en función del tiempo (N vs t) y estudió la variación de los parámetros
-t = np.linspace(0, 100, 1000)
+t = np.linspace(0, 300, 1000)
 figure, axis = plt.subplots(1, 3)
 
 # Parámetros 1
 N0 = 2
-r = 0.01
+r = 0.02
 K = 15
 
 poblacion_exp = np.array([Nexp(N0, r, i) for i in t])
@@ -62,6 +61,7 @@ poblacion_log = np.array([Nlog(N0, r, K, i) for i in t])
 axis[0].plot(t, poblacion_exp, label=f'Crecimiento exponencial')
 axis[0].plot(t, poblacion_log, label=f'Crecimiento logístico')
 axis[0].legend()
+axis[0].set_yscale('log')
 axis[0].set_xlabel('Tiempo')
 axis[0].set_ylabel('Población')
 axis[0].set_title(f'N0={N0}, r={r}, K={K}')
@@ -76,6 +76,7 @@ poblacion_log = np.array([Nlog(N0, r, K, i) for i in t])
 
 axis[1].plot(t, poblacion_exp, label=f'Crecimiento exponencial')
 axis[1].plot(t, poblacion_log, label=f'Crecimiento logístico')
+axis[1].set_yscale('log')
 axis[1].set_title(f'N0={N0}, r={r}, K={K}')
 
 # Parámetros 3
@@ -89,12 +90,13 @@ poblacion_log = np.array([Nlog(N0, r, K, i) for i in t])
 
 axis[2].plot(t, poblacion_exp, label=f'Crecimiento exponencial')
 axis[2].plot(t, poblacion_log, label=f'Crecimiento logístico')
+# axis[2].set_yscale('log')
 axis[2].set_title(f'N0={N0}, r={r}, K={K}')
 
 plt.show()
 
 # Grafico la variación poblacional en función del tamaño poblacional (dN/dt vs N) y estudió la variación de los parámetros
-N = np.array(range(1, 51))
+N = np.array(range(1, 61))
 
 figure, axis = plt.subplots(1, 3)
 
@@ -135,7 +137,7 @@ axis[2].plot(N, variacion_log, label='Crecimiento logístico')
 axis[2].set_title(f'r={r}, K={K}')
 plt.show()
 
-# PUNTO DE EQUILIBRIO -> CUANDO R = 0 o CUANDO N = K (PREGUNTAR)
+# PUNTO DE EQUILIBRIO -> CUANDO N = 0 o CUANDO N = K (ESTO ESTA BIEN -> ABAJO DE TODO ESTA CORROBORADO)
 
 # Obtengo las soluciones numéricas de ambas ecuaciones por los métodos vistos y comparo con las soluciones exactas
 N0 = 2
@@ -174,12 +176,7 @@ Recuerdo, r = tasa de crecimiento, n = tamaño de la población, K = tamaño má
 Entonces r = 0 (tasa de crecimiento nula) N = 0 (arranco sin poblacion) o N = K (se alcanza el tamaño máximo de la población)
 '''
 
-# Corroboro
-# r = 0
-r = 0
-N = 2
-K = 15
-print(f'Para r = 0 (N = 0, K = 15): {r*N * ((K - N)/K)}')
+# Corroboro el punto de equilibrio
 
 # N = 0
 r = 0.1

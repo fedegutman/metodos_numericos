@@ -1,6 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+def runge_kutta4_vectors(f, t0, y0, h, n):
+    return
+
 def runge_kutta4_system(f1, f2, t0, y0, z0, h, n):
     t = t0
     y = y0
@@ -104,8 +107,19 @@ axis1[0, 0].set_xlim(0, K1 + 5)
 axis1[0, 0].legend()
 axis1[0, 0].set_title('Gana especie 1')
 
+v1 = runge_kutta4_system(dN1dt, dN2dt, 0, 20, 20, h, n)
+axis1[0, 0].arrow(20, 20, v1[0] - 20, v1[1] - 20, linewidth=2 ,head_width=1, head_length=1, fc='black', ec='black')
+
+v2 = runge_kutta4_system(dN1dt, dN2dt, 0, 10, 75, h, n)
+axis1[0, 0].arrow(10, 75, v1[0] - 10, v1[1] - 75, linewidth=2 ,head_width=1, head_length=1, fc='black', ec='black')
+
+v3 = runge_kutta4_system(dN1dt, dN2dt, 0, 80, 120, h, n)
+axis1[0, 0].arrow(80, 120, v1[0] - 80, v1[1] - 120, linewidth=2 ,head_width=1, head_length=1, fc='black', ec='black')
+
+'''
 x, y = np.meshgrid(np.linspace(0, K1/alpha +5, 100), np.linspace(0, K1 + 50, 100)) # para que me cubra todo el grafico
 axis1[0, 0].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=1, color='black')
+'''
 
 N1 = []
 N2 = []
