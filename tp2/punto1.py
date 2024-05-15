@@ -136,6 +136,9 @@ variacion_log = np.array([r * i * ((K - i)/K) for i in N])
 axis[2].plot(N, variacion_exp, label='Crecimiento exponencial')
 axis[2].plot(N, variacion_log, label='Crecimiento logístico')
 axis[2].set_title(f'r={r}, K={K}')
+
+figure.subplots_adjust(wspace=0.5, hspace=0.3)
+
 plt.show()
 
 # PUNTO DE EQUILIBRIO -> CUANDO N = 0 o CUANDO N = K (ESTO ESTA BIEN -> ABAJO DE TODO ESTA CORROBORADO)
