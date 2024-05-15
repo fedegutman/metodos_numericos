@@ -76,10 +76,7 @@ plt.streamplot(N1, N2, dN1dt, dN2dt, density=1, color='black')
 
 plt.show()
 
-# Grafico las trayectorias del sistema y el diagrama de fases
-
 figure, axis = plt.subplots(2, 1)
-figure2, axis2 = plt.subplots()
 
 N0, P0 = 5, 5
 t0 = 0
@@ -104,8 +101,10 @@ axis[1].set_ylabel('Población de predadores')
 figure.subplots_adjust(hspace=0.3)
 plt.show()
 
-# Ver ejes diagrama de fases
-axis2.plot(prey, predator, label='Diagrama de fases')
+# Grafico el diagrama de fases
+
+.
+# axis2.plot(prey, predator, label='Diagrama de fases')
 
 # Lotka-Volterra Extendidas (LVE)
 
