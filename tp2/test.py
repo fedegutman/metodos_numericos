@@ -1,21 +1,34 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Define the circle
-circle = lambda x, y: x**2 + y**2 - r**2
+# Define parameters
+beta = 0.5
+q = 0.1
+alpha = 0.3
+r = 0.2
 
-# Define the radius
-r = 1
+# Define the function V
+def V(N, P):
+    return beta * N - q * np.log(N) - alpha * P + r * np.log(P)
 
-# Create an array of theta values
-theta = np.linspace(0, 2*np.pi, 100)
+# Define the range of N and P values
+N_values = np.linspace(0.1, 5, 100)
+P_values = np.linspace(0.1, 5, 100)
 
-# Calculate the x and y coordinates of the points on the circle
-x = r * np.cos(theta)
-y = r * np.sin(theta)
+# Create a grid of N and P values
+N, P = np.meshgrid(N_values, P_values)
 
-# Plot the circle
-plt.figure(figsize=(5,5))
-plt.plot(x, y)
-plt.gca().set_aspect('equal', adjustable='box')
+# Calculate the values of V for each point in the grid
+Z = V(N, P)
+
+# Plot the contour plot
+plt.figure(figsize=(8, 6))
+contour = plt.contour(N, P, Z, levels=20, cmap='RdGy')
+plt.colorbar(contour, label='V(N, P)')
+plt.xlabel('N (Prey)')
+plt.ylabel('P (Predator)')
+plt.title('Phase Diagram - Lotka-Volterra Predator-Prey Model')
+plt.grid(True)
+plt.xlim(0, 5)  # Adjust limits to ensure non-negative logarithm values
+plt.ylim(0, 5)  # Adjust limits to ensure non-negative logarithm values
 plt.show()

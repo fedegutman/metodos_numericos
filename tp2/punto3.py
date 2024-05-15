@@ -103,7 +103,12 @@ plt.show()
 
 # Grafico el diagrama de fases
 
-.
+
+plt.setx_label('Población de presas')
+plt.sety_label('Población de predadores')
+V = lambda N, P: beta * N - q*np.log(N) - alpha * P + r*np.log(P)
+
+
 # axis2.plot(prey, predator, label='Diagrama de fases')
 
 # Lotka-Volterra Extendidas (LVE)
