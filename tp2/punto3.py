@@ -1,32 +1,32 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def runge_kutta4_system(f1, f2, t0, y0, z0, h, n):
+def runge_kutta4_system(f1, f2, t0, x0, y0, h, n):
     t = t0
+    x = x0
     y = y0
-    z = z0
     for i in range(n):
-        k1_y = h*f1(t, y, z)
-        k1_z = h*f2(t, y, z)
+        k1 = h*f1(x, y, t)
+        l1 = h*f2(x, y, t)
         
-        k2_y = h*f1(t + h/2, y + k1_y/2, z + k1_z/2)
-        k2_z = h*f2(t + h/2, y + k1_y/2, z + k1_z/2)
+        k2 = h*f1(x + k1/2, y + l1/2, t + h/2)
+        l2 = h*f2(t + k1/2, y + l1/2, t + h/2)
         
-        k3_y = h*f1(t + h/2, y + k2_y/2, z + k2_z/2)
-        k3_z = h*f2(t + h/2, y + k2_y/2, z + k2_z/2)
+        k3 = h*f1(x + k2/2, y + l2/2, t + h/2)
+        l3 = h*f2(x + k2/2, y + l2/2, t + h/2)
         
-        k4_y = h*f1(t + h, y + k3_y, z + k3_z)
-        k4_z = h*f2(t + h, y + k3_y, z + k3_z)
+        k4 = h*f1(x + k3, y + l3, t + h)
+        l4 = h*f2(x + k3, y + l3, t + h)
         
-        y = y + (k1_y + 2*k2_y + 2*k3_y + k4_y)/6
-        z = z + (k1_z + 2*k2_z + 2*k3_z + k4_z)/6
+        x = x + (k1 + 2*k2 + 2*k3 + k4)/6
+        y = y + (l1 + 2*l2 + 2*l3 + l4)/6
         t = t + h
-    return y, z
+    return x, y
 
 # Defino las ecuaciones del modelo de Predador-Presa de Lotka-Volterra
 
 # Presa
-dNdt = lambda t, N, P: r*N - alpha*N*P
+dNdt = lambda N, P, t: r*N - alpha*N*P
 '''
 r -> tasa de crecimiento de las presas
 N -> numero de individuos (presas)
@@ -35,7 +35,7 @@ P -> numero de individuos (predadores)
 '''
 
 # Predador
-dPdt = lambda t, N, P: beta*N*P - q*P
+dPdt = lambda N, P, t: beta*N*P - q*P
 '''
 beta -> eficiencia de conversión
 N -> numero de individuos (presas)

@@ -1,8 +1,36 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def runge_kutta4_vectors(f, t0, y0, h, n):
-    return
+def runge_kutta4_system_vectors(f1, f2, t0, x0, y0, h, n):
+    t_values = [t0]
+    x_values = [x0]
+    y_values = [y0]
+    
+    t = t0
+    x = x0
+    y = y0
+    for i in range(n):
+        k1 = h*f1(x, y, t)
+        l1 = h*f2(x, y, t)
+        
+        k2 = h*f1(x + k1/2, y + l1/2, t + h/2)
+        l2 = h*f2(x + k1/2, y + l1/2, t + h/2)
+        
+        k3 = h*f1(x + k2/2, y + l2/2, t + h/2)
+        l3 = h*f2(x + k2/2, y + l2/2, t + h/2)
+        
+        k4 = h*f1(x + k3, y + l3, t + h)
+        l4 = h*f2(x + k3, y + l3, t + h)
+        
+        x = x + (k1 + 2*k2 + 2*k3 + k4)/6
+        y = y + (l1 + 2*l2 + 2*l3 + l4)/6
+        t = t + h
+
+        x_values.append(x)
+        y_values.append(y)
+        t_values.append(t)
+        
+    return t_values, x_values, y_values
 
 def runge_kutta4_system(f1, f2, t0, x0, y0, h, n):
     t = t0
