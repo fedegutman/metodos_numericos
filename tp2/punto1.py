@@ -173,7 +173,7 @@ print(f'Diferencia entre exacta y euler: {abs(exact_log - euler_log)}')
 dNdt_log = 0 ----> 0 = r*N * ((K - N)/K)
 Entonces r*N = 0 o K - N = 0
 Recuerdo, r = tasa de crecimiento, n = tamaño de la población, K = tamaño máximo de la población (NO PUEDE SER CERO)
-Entonces r = 0 (tasa de crecimiento nula) N = 0 (arranco sin poblacion) o N = K (se alcanza el tamaño máximo de la población)
+N = 0 (arranco sin poblacion) o N = K (se alcanza el tamaño máximo de la población)
 '''
 
 # Corroboro el punto de equilibrio
