@@ -151,8 +151,24 @@ for t in tf:
 
 axis2[0, 0].plot(tf, np.array(N1), label='Especie 1', color='blue')
 axis2[0, 0].plot(tf, np.array(N2), label='Especie 2', color='green')
-axis2[0, 0].legend()
 axis2[0, 0].set_title('Gana especie 1')
+
+# Grafico con lineas punteadas lo  mismo pero utilizando otros parametros
+'''
+N1 = []
+N2 = []
+r1, r2 = 0.1, 0.1
+
+for t in tf:
+    n = int((t-t0)/h)
+    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
+    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+
+axis2[0, 0].plot(tf, np.array(N1), label='(1) r1 = 0.3', color='black', linestyle='dashed')
+axis2[0, 0].plot(tf, np.array(N2), label='(2) r2 = 0.3', color='black' , linestyle='dashed')
+'''
+axis2[0, 0].legend()
+
 
 # Caso 2 -> Gana la especie 2
 alpha = 1.5
