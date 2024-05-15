@@ -4,37 +4,37 @@ import numpy as np
 def runge_kutta4_vectors(f, t0, y0, h, n):
     return
 
-def runge_kutta4_system(f1, f2, t0, y0, z0, h, n):
+def runge_kutta4_system(f1, f2, t0, x0, y0, h, n):
     t = t0
+    x = x0
     y = y0
-    z = z0
     for i in range(n):
-        k1_y = h*f1(t, y, z)
-        k1_z = h*f2(t, y, z)
+        k1 = h*f1(x, y, t)
+        l1 = h*f2(x, y, t)
         
-        k2_y = h*f1(t + h/2, y + k1_y/2, z + k1_z/2)
-        k2_z = h*f2(t + h/2, y + k1_y/2, z + k1_z/2)
+        k2 = h*f1(x + k1/2, y + l1/2, t + h/2)
+        l2 = h*f2(t + k1/2, y + l1/2, t + h/2)
         
-        k3_y = h*f1(t + h/2, y + k2_y/2, z + k2_z/2)
-        k3_z = h*f2(t + h/2, y + k2_y/2, z + k2_z/2)
+        k3 = h*f1(x + k2/2, y + l2/2, t + h/2)
+        l3 = h*f2(x + k2/2, y + l2/2, t + h/2)
         
-        k4_y = h*f1(t + h, y + k3_y, z + k3_z)
-        k4_z = h*f2(t + h, y + k3_y, z + k3_z)
+        k4 = h*f1(x + k3, y + l3, t + h)
+        l4 = h*f2(x + k3, y + l3, t + h)
         
-        y = y + (k1_y + 2*k2_y + 2*k3_y + k4_y)/6
-        z = z + (k1_z + 2*k2_z + 2*k3_z + k4_z)/6
+        x = x + (k1 + 2*k2 + 2*k3 + k4)/6
+        y = y + (l1 + 2*l2 + 2*l3 + l4)/6
         t = t + h
-    return y, z
+    return x, y
 
 # Defino las ecuaciones de competencia de Lotka-Volterra
 
 # Especie 1
-dN1dt = lambda t, N1, N2: r1*N1*(1 - (N1 + alpha*N2)/K1)
+dN1dt = lambda N1, N2, t: r1*N1*(1 - (N1 + alpha*N2)/K1)
 'alpha -> el efecto que tiene un individuo especie 2 sobre el crecimiento poblacional de la especie 1'
 'por eso es que lo multiplico por N2 (la cantidad de individuos de la especie 2)'
 
 # Especie 2
-dN2dt = lambda t, N2, N1: r2*N2*(1 - (N2 + beta*N1)/K2)
+dN2dt = lambda N1, N2, t: r2*N2*(1 - (N2 + beta*N1)/K2)
 'beta -> el efecto que tiene la especie 1 sobre el crecimiento poblacional de la especie 2'
 
 # Parámetros
@@ -73,7 +73,7 @@ N2 = K2 - beta*N1
 r1, r2 = 0.3, 0.3
 N1_0, N2_0 = 10, 10
 t0 = 0
-tf = np.linspace(1, 50, 100)
+tf = np.linspace(1, 100, 100)
 h = 0.01
 
 figure1, axis1 = plt.subplots(2, 2)
