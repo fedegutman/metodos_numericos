@@ -103,10 +103,19 @@ plt.show()
 
 # Grafico el diagrama de fases
 
+prey, predator = [], []
 
-plt.setx_label('Población de presas')
-plt.sety_label('Población de predadores')
-V = lambda N, P: beta * N - q*np.log(N) - alpha * P + r*np.log(P)
+for t in tf:
+    n = int((t-t0)/h)
+    prey.append(runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)[0])
+    predator.append(runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)[1])
+
+plt.plot(prey, predator, label='Diagrama de fases')
+
+plt.xlabel('Población de presas')
+plt.ylabel('Población de predadores')
+# V = lambda N, P: beta * N - q*np.log(N) - alpha * P + r*np.log(P)
+plt.show()
 
 
 # axis2.plot(prey, predator, label='Diagrama de fases')
