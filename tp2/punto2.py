@@ -137,6 +137,19 @@ axis2[0, 0].plot(tf, np.array(N1), label='(E1), r1 = 0.1', color='red', linestyl
 axis2[0, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.3', color='black' , linestyle='dashed')
 axis2[0, 0].legend()
 
+N1 = []
+N2 = []
+r1, r2 = 1.3, 0.7
+
+for t in tf:
+    n = int((t-t0)/h)
+    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
+    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+
+axis2[0, 0].plot(tf, np.array(N1), label='(E1), r1 = 1.3', color='y', linestyle='dashdot')
+axis2[0, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='m' , linestyle='dashdot')
+axis2[0, 0].legend()
+
 # Caso 2 -> Gana la especie 2
 r1, r2 = 0.5, 0.7
 alpha = 1.5
@@ -189,6 +202,19 @@ for t in tf:
 
 axis2[0, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.7', color='red', linestyle='dashed')
 axis2[0, 1].plot(tf, np.array(N2), label='(E2), r2 = 0.2', color='black' , linestyle='dashed')
+axis2[0, 1].legend()
+
+N1 = []
+N2 = []
+r1, r2 = 0.2, 0.1
+
+for t in tf:
+    n = int((t-t0)/h)
+    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
+    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+
+axis2[0, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.2', color='y', linestyle='dashdot')
+axis2[0, 1].plot(tf, np.array(N2), label='(E2), r2 = 0.1', color='m' , linestyle='dashdot')
 axis2[0, 1].legend()
 
 # Caso 3 -> Puede ganar cualquiera
@@ -246,6 +272,19 @@ axis2[1, 0].plot(tf, np.array(N1), label='(E1), r1 = 1', color='red', linestyle=
 axis2[1, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.4', color='black' , linestyle='dashed')
 axis2[1, 0].legend()
 
+N1 = []
+N2 = []
+r1, r2 = 0.3, 0.05
+
+for t in tf:
+    n = int((t-t0)/h)
+    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
+    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+
+axis2[1, 0].plot(tf, np.array(N1), label='(E1), r1 = 0.3', color='y', linestyle='dashdot')
+axis2[1, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.03', color='m' , linestyle='dashdot')
+axis2[1, 0].legend()
+
 # Caso 4 -> Coexistencia
 r1, r2 = 0.5, 0.7
 alpha = 0.6
@@ -299,6 +338,19 @@ for t in tf:
 
 axis2[1, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.2', color='red', linestyle='dashed')
 axis2[1, 1].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='black' , linestyle='dashed')
+axis2[1, 1].legend()
+
+N1 = []
+N2 = []
+r1, r2 = 0.8, 1.6
+
+for t in tf:
+    n = int((t-t0)/h)
+    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
+    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+
+axis2[1, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.8', color='y', linestyle='dashdot')
+axis2[1, 1].plot(tf, np.array(N2), label='(E2), r2 = 1.6', color='m' , linestyle='dashdot')
 axis2[1, 1].legend()
 
 figure1.subplots_adjust(wspace=0.3, hspace=0.3)
