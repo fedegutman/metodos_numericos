@@ -119,8 +119,8 @@ for t in tf:
     N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
     N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
 
-axis2[0, 0].plot(tf, np.array(N1), label='Especie 1', color='blue')
-axis2[0, 0].plot(tf, np.array(N2), label='Especie 2', color='green')
+axis2[0, 0].plot(tf, np.array(N1), label='(E1), r1 = 0.5', color='blue')
+axis2[0, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='green')
 axis2[0, 0].set_title('Gana especie 1')
 
 # Grafico con lineas punteadas lo  mismo pero utilizando otros parametros
@@ -172,8 +172,8 @@ for t in tf:
     N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
     N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
 
-axis2[0, 1].plot(tf, np.array(N1), label='Especie 1', color='blue')
-axis2[0, 1].plot(tf, np.array(N2), label='Especie 2', color='green')
+axis2[0, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.5', color='blue')
+axis2[0, 1].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='green')
 axis2[0, 1].set_title('Gana especie 2')
 
 # Grafico con lineas punteadas lo  mismo pero utilizando otros parametros
@@ -227,8 +227,8 @@ for t in tf:
     N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
     N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
 
-axis2[1, 0].plot(tf, np.array(N1), label='Especie 1', color='blue')
-axis2[1, 0].plot(tf, np.array(N2), label='Especie 2', color='green')
+axis2[1, 0].plot(tf, np.array(N1), label='(E1), r1 = 0.5', color='blue')
+axis2[1, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='green')
 axis2[1, 0].set_title('Gana cualquiera')
 
 # Grafico con lineas punteadas lo  mismo pero utilizando otros parametros
@@ -282,8 +282,8 @@ for t in tf:
     N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
     N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
 
-axis2[1, 1].plot(tf, np.array(N1), label='Especie 1', color='blue')
-axis2[1, 1].plot(tf, np.array(N2), label='Especie 2', color='green')
+axis2[1, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.5', color='blue')
+axis2[1, 1].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='green')
 axis2[1, 1].set_title('Coexistencia')
 
 # Grafico con lineas punteadas lo  mismo pero utilizando otros parametros
