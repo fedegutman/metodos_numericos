@@ -153,7 +153,17 @@ for i in range(5):
 plt.xlabel('Población de presas')
 plt.ylabel('Población de predadores')
 plt.legend()
+
+'''
+N1, N2 = np.meshgrid(np.linspace(0.1, 10, 15), np.linspace(0.1, 10, 15))
+magnitude = np.sqrt((r*N1 - alpha*N1*N2)**2 + (beta*N1*N2 - q*N2)**2)
+normalized_r1 = (r*N1 - alpha*N1*N2) / magnitude
+normalized_r2 = (beta*N1*N2 - q*N2) / magnitude
+plt.quiver(N1, N2, normalized_r1, normalized_r2, color='black',)
+
+'''
 plt.show()
+
 
 # Lotka-Volterra Extendidas (LVE)
 
@@ -243,4 +253,14 @@ for i in range(5):
 plt.xlabel('Población de presas')
 plt.ylabel('Población de predadores')
 plt.legend()
+
+'''
+N1, N2 = np.meshgrid(np.linspace(0.1, 10, 15), np.linspace(0.1, 10, 15))
+magnitude = np.sqrt((r*N1*(1 - N1/K) - alpha*N1*N2)**2 + (beta*N1*N2 - q*N2)**2)
+normalized_r1 = (r*N1*(1 - N1/K) - alpha*N1*N2) / magnitude
+normalized_r2 = (beta*N1*N2 - q*N2) / magnitude
+plt.quiver(N1, N2, normalized_r1, normalized_r2, color='black',)
+'''
+
+plt.show()
 plt.show()
