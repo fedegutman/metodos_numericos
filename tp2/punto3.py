@@ -263,4 +263,3 @@ plt.quiver(N1, N2, normalized_r1, normalized_r2, color='black',)
 '''
 
 plt.show()
-plt.show()
