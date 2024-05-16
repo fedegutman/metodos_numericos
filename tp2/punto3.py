@@ -23,6 +23,32 @@ def runge_kutta4_system(f1, f2, t0, x0, y0, h, n):
         t = t + h
     return x, y
 
+def runge_kutta4_system_phaseplot(f1, f2, t0, x0, y0, h, n):
+    t = t0
+    x = x0
+    y = y0
+    xs = [x0]
+    ys = [y0]
+    for i in range(n):
+        k1 = h*f1(x, y, t)
+        l1 = h*f2(x, y, t)
+        
+        k2 = h*f1(x + k1/2, y + l1/2, t + h/2)
+        l2 = h*f2(x + k1/2, y + l1/2, t + h/2)
+        
+        k3 = h*f1(x + k2/2, y + l2/2, t + h/2)
+        l3 = h*f2(x + k2/2, y + l2/2, t + h/2)
+        
+        k4 = h*f1(x + k3, y + l3, t + h)
+        l4 = h*f2(x + k3, y + l3, t + h)
+        
+        x = x + (k1 + 2*k2 + 2*k3 + k4)/6
+        y = y + (l1 + 2*l2 + 2*l3 + l4)/6
+        t = t + h
+        xs.append(x)
+        ys.append(y)
+    return xs, ys
+
 # Defino las ecuaciones del modelo de Predador-Presa de Lotka-Volterra
 
 # Presa
@@ -105,22 +131,29 @@ figure.subplots_adjust(hspace=0.3)
 plt.show()
 
 # Grafico el diagrama de fases
-alpha = 1.1
-prey, predator = [], []
-for t in tf:
-    n = int((t-t0)/h)
-    prey_new, predator_new = runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)
-    prey.append(prey_new)
-    predator.append(predator_new)
 
-plt.plot(prey, predator, label='Diagrama de fases')
+alpha = 0.9
+beta = 0.8
+q = 1.2
+r = 1.1
+N0 = 2
+P0 = 2
+
+t0 = 0
+tf = 10
+h = 0.01
+n = int((tf - t0) / h)
+
+for i in range(5):
+    prey, predator = runge_kutta4_system_phaseplot(dNdt, dPdt, t0, N0, P0, h, n)
+    plt.plot(prey, predator, label=f'N0, P0 = {N0}, {P0}')
+    N0 += 1
+    P0 += 1
 
 plt.xlabel('Población de presas')
 plt.ylabel('Población de predadores')
+plt.legend()
 plt.show()
-
-
-# axis2.plot(prey, predator, label='Diagrama de fases')
 
 # Lotka-Volterra Extendidas (LVE)
 
@@ -185,4 +218,29 @@ axis[1].set_xlabel('Tiempo')
 axis[1].set_ylabel('Población de predadores')
 
 figure.subplots_adjust(hspace=0.3)
+plt.show()
+
+# Grafico el diagrama de fases ESTO A CHEQUEEAAAAR
+
+alpha = 0.9
+beta = 0.8
+q = 1.2
+r = 1.1
+N0 = 2
+P0 = 2
+
+t0 = 0
+tf = 10
+h = 0.01
+n = int((tf - t0) / h)
+
+for i in range(5):
+    prey, predator = runge_kutta4_system_phaseplot(dNdt, dPdt, t0, N0, P0, h, n)
+    plt.plot(prey, predator, label=f'N0, P0 = {N0}, {P0}')
+    N0 += 1
+    P0 += 1
+
+plt.xlabel('Población de presas')
+plt.ylabel('Población de predadores')
+plt.legend()
 plt.show()

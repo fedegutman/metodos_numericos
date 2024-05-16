@@ -23,39 +23,26 @@ def runge_kutta4_system(f1, f2, t0, x0, y0, h, n):
         t = t + h
     return x, y
 
-
-dNdt = lambda N, P, t: r*N*(1 - (N/K)) - alpha*N*P
+dNdt = lambda N, P, t: r*N - alpha*N*P
 dPdt = lambda N, P, t: beta*N*P - q*P
 
-alpha = 0.3
-beta = 0.5
-r = 0.8
-q = 0.3
-K = 20
+alpha = 0.9
+beta = 0.8
+q = 1.2
+r = 1.1
+N0 = 0.9
+P0 = 0.8
 
-# Grafico las trayectorias del sistema
-figure, axis = plt.subplots(2, 1)
-
-N0, P0 = 5, 5
 t0 = 0
-tf = np.linspace(1, 100, 50)
+tf = 10
 h = 0.01
+n = int((tf - t0) / h)
 
-prey, predator = [], []
+prey, predator = runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)
 
-for t in tf:
-    n = int((t-t0)/h)
-    prey_new, predator_new = runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)
-    prey.append(prey_new)
-    predator.append(predator_new)
-
-axis[0].plot(tf, prey, label='Presa', color='blue')
-axis[0].set_xlabel('Tiempo')
-axis[0].set_ylabel('Población de presas')
-
-axis[1].plot(tf, predator, label='Predador', color='red')
-axis[1].set_xlabel('Tiempo')
-axis[1].set_ylabel('Población de predadores')
-
-figure.subplots_adjust(hspace=0.3)
+plt.figure()
+plt.plot(prey, predator)
+plt.xlabel('Población de presas')
+plt.ylabel('Población de predadores')
+plt.title('Diagrama de fases del modelo de Lotka-Volterra')
 plt.show()
