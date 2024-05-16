@@ -244,7 +244,7 @@ tf = 10
 h = 0.01
 n = int((tf - t0) / h)
 
-for i in range(5):
+for i in range(7):
     prey, predator = runge_kutta4_system_phaseplot(dNdt, dPdt, t0, N0, P0, h, n)
     plt.plot(prey, predator, label=f'N0, P0 = {N0}, {P0}')
     N0 += 1

@@ -116,8 +116,9 @@ N2 = []
 
 for t in tf:
     n = int((t-t0)/h)
-    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
-    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+    new_N1, new_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+    N1.append(new_N1)
+    N2.append(new_N2)
 
 axis2[0, 0].plot(tf, np.array(N1), label='(E1), r1 = 0.5', color='blue')
 axis2[0, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='green')
@@ -130,8 +131,9 @@ r1, r2 = 0.1, 0.3
 
 for t in tf:
     n = int((t-t0)/h)
-    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
-    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+    new_N1, new_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+    N1.append(new_N1)
+    N2.append(new_N2)
 
 axis2[0, 0].plot(tf, np.array(N1), label='(E1), r1 = 0.1', color='red', linestyle='dashed')
 axis2[0, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.3', color='black' , linestyle='dashed')
@@ -143,8 +145,9 @@ r1, r2 = 1.3, 0.7
 
 for t in tf:
     n = int((t-t0)/h)
-    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
-    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+    new_N1, new_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+    N1.append(new_N1)
+    N2.append(new_N2)
 
 axis2[0, 0].plot(tf, np.array(N1), label='(E1), r1 = 1.3', color='y', linestyle='dashdot')
 axis2[0, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='m' , linestyle='dashdot')
@@ -182,8 +185,9 @@ N2 = []
 
 for t in tf:
     n = int((t-t0)/h)
-    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
-    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+    new_N1, new_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+    N1.append(new_N1)
+    N2.append(new_N2)
 
 axis2[0, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.5', color='blue')
 axis2[0, 1].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='green')
@@ -197,8 +201,9 @@ r1, r2 = 0.7, 0.2
 
 for t in tf:
     n = int((t-t0)/h)
-    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
-    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+    new_N1, new_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+    N1.append(new_N1)
+    N2.append(new_N2)
 
 axis2[0, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.7', color='red', linestyle='dashed')
 axis2[0, 1].plot(tf, np.array(N2), label='(E2), r2 = 0.2', color='black' , linestyle='dashed')
@@ -210,8 +215,9 @@ r1, r2 = 0.2, 0.1
 
 for t in tf:
     n = int((t-t0)/h)
-    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
-    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+    new_N1, new_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+    N1.append(new_N1)
+    N2.append(new_N2)
 
 axis2[0, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.2', color='y', linestyle='dashdot')
 axis2[0, 1].plot(tf, np.array(N2), label='(E2), r2 = 0.1', color='m' , linestyle='dashdot')
@@ -250,8 +256,9 @@ N2 = []
 
 for t in tf:
     n = int((t-t0)/h)
-    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
-    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+    new_N1, new_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+    N1.append(new_N1)
+    N2.append(new_N2)
 
 axis2[1, 0].plot(tf, np.array(N1), label='(E1), r1 = 0.5', color='blue')
 axis2[1, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='green')
@@ -265,8 +272,9 @@ r1, r2 = 1, 0.4
 
 for t in tf:
     n = int((t-t0)/h)
-    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
-    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+    new_N1, new_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+    N1.append(new_N1)
+    N2.append(new_N2)
 
 axis2[1, 0].plot(tf, np.array(N1), label='(E1), r1 = 1', color='red', linestyle='dashed')
 axis2[1, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.4', color='black' , linestyle='dashed')
@@ -278,8 +286,9 @@ r1, r2 = 0.3, 0.05
 
 for t in tf:
     n = int((t-t0)/h)
-    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
-    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+    new_N1, new_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+    N1.append(new_N1)
+    N2.append(new_N2)
 
 axis2[1, 0].plot(tf, np.array(N1), label='(E1), r1 = 0.3', color='y', linestyle='dashdot')
 axis2[1, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.03', color='m' , linestyle='dashdot')
@@ -318,8 +327,9 @@ N2 = []
 
 for t in tf:
     n = int((t-t0)/h)
-    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
-    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+    new_N1, new_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+    N1.append(new_N1)
+    N2.append(new_N2)
 
 axis2[1, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.5', color='blue')
 axis2[1, 1].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='green')
@@ -333,8 +343,9 @@ r1, r2 = 0.2, 0.7
 
 for t in tf:
     n = int((t-t0)/h)
-    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
-    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+    new_N1, new_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+    N1.append(new_N1)
+    N2.append(new_N2)
 
 axis2[1, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.2', color='red', linestyle='dashed')
 axis2[1, 1].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='black' , linestyle='dashed')
@@ -346,8 +357,9 @@ r1, r2 = 0.8, 1.6
 
 for t in tf:
     n = int((t-t0)/h)
-    N1.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[0])
-    N2.append(runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)[1])
+    new_N1, new_N2 = runge_kutta4_system(dN1dt, dN2dt, t0, N1_0, N2_0, h, n)
+    N1.append(new_N1)
+    N2.append(new_N2)
 
 axis2[1, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.8', color='y', linestyle='dashdot')
 axis2[1, 1].plot(tf, np.array(N2), label='(E2), r2 = 1.6', color='m' , linestyle='dashdot')
