@@ -82,15 +82,16 @@ figure, axis = plt.subplots(2, 1)
 
 N0, P0 = 5, 5
 t0 = 0
-tf = np.linspace(1, 20, 100)
+tf = np.linspace(1, 30, 100)
 h = 0.01
 
 prey, predator = [], []
 
 for t in tf:
     n = int((t-t0)/h)
-    prey.append(runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)[0])
-    predator.append(runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)[1])
+    prey_new, predator_new = runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)
+    prey.append(prey_new)
+    predator.append(predator_new)
 
 axis[0].plot(tf, prey, label='Presa', color='blue')
 axis[0].set_xlabel('Tiempo')
@@ -108,8 +109,9 @@ alpha = 1.1
 prey, predator = [], []
 for t in tf:
     n = int((t-t0)/h)
-    prey.append(runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)[0])
-    predator.append(runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)[1])
+    prey_new, predator_new = runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)
+    prey.append(prey_new)
+    predator.append(predator_new)
 
 plt.plot(prey, predator, label='Diagrama de fases')
 
@@ -122,8 +124,8 @@ plt.show()
 
 # Lotka-Volterra Extendidas (LVE)
 
-dNdt = lambda t, N, P: r*N*(1 - (N/K)) - alpha*N*P
-dPdt = lambda t, N, P: beta*N*P - q*P
+dNdt = lambda N, P, t: r*N*(1 - (N/K)) - alpha*N*P
+dPdt = lambda N, P, t: beta*N*P - q*P
 
 # Grafico las isoclinas 
 '''
@@ -150,8 +152,11 @@ plt.ylabel('Población de predadores')
 plt.legend()
 
 # Grafico los campos vectoriales
-N1, N2 = np.meshgrid(N, N)
-plt.streamplot(N1, N2, r*N1*(1 - (N1/K)) - alpha*N1*N2, beta*N1*N2 - q*N2, density=1, color='black')
+N1, N2 = np.meshgrid(np.linspace(0.1, 10, 15), np.linspace(0.1, 10, 15))
+magnitude = np.sqrt((r*N1*(1 - N1/K) - alpha*N1*N2)**2 + (beta*N1*N2 - q*N2)**2)
+normalized_r1 = (r*N1*(1 - N1/K) - alpha*N1*N2) / magnitude
+normalized_r2 = (beta*N1*N2 - q*N2) / magnitude
+plt.quiver(N1, N2, normalized_r1, normalized_r2, color='black',)
 
 plt.show()
 
@@ -160,15 +165,16 @@ figure, axis = plt.subplots(2, 1)
 
 N0, P0 = 5, 5
 t0 = 0
-tf = np.linspace(1, 20, 100)
+tf = np.linspace(1, 30, 100)
 h = 0.01
 
 prey, predator = [], []
 
 for t in tf:
     n = int((t-t0)/h)
-    prey.append(runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)[0])
-    predator.append(runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)[1])
+    prey_new, predator_new = runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)
+    prey.append(prey_new)
+    predator.append(predator_new)
 
 axis[0].plot(tf, prey, label='Presa', color='blue')
 axis[0].set_xlabel('Tiempo')
