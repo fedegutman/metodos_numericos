@@ -112,19 +112,19 @@ tf = np.linspace(1, 30, 200)
 h = 0.01
 
 prey, predator = [], []
-alphas = [0.5, 0.7, 0.9] # Cambio el valor de alpha
+alpha_and_beta = [(0.3, 0.3), (0.8, 0.4), (0.5, 1.1)]
 colors = ['m', 'b', 'c']
 
 for i in range(3):
-    alpha = alphas[i]
+    alpha, beta = alpha_and_beta[i][0], alpha_and_beta[i][1]
     prey, predator = [], []
     for t in tf:
         n = int((t-t0)/h)
         prey_new, predator_new = runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)
         prey.append(prey_new)
         predator.append(predator_new)
-    axis[0].plot(tf, prey, label=f'alpha = {alpha}', color=colors[i])
-    axis[1].plot(tf, predator, label=f'alpha = {alpha}', color=colors[i])
+    axis[0].plot(tf, prey, label=f'alpha = {alpha}, beta = {beta}', color=colors[i])
+    axis[1].plot(tf, predator, label=f'alpha = {alpha}, beta = {beta}', color=colors[i])
 
 # axis[0].plot(tf, prey, label='Presa', color='blue')
 axis[0].set_xlabel('Tiempo')
@@ -134,7 +134,6 @@ axis[0].set_ylabel('Población de presas')
 axis[1].set_xlabel('Tiempo')
 axis[1].set_ylabel('Población de predadores')
 axis[0].legend()
-axis[1].legend()
 
 figure.subplots_adjust(hspace=0.3)
 plt.show()
@@ -217,22 +216,26 @@ figure, axis = plt.subplots(2, 1)
 
 N0, P0 = 5, 5
 t0 = 0
-tf = np.linspace(1, 30, 100)
+tf = np.linspace(1, 50, 100)
 h = 0.01
 
 prey, predator = [], []
 
-for t in tf:
-    n = int((t-t0)/h)
-    prey_new, predator_new = runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)
-    prey.append(prey_new)
-    predator.append(predator_new)
+for i in range(3):
+    alpha, beta = alpha_and_beta[i][0], alpha_and_beta[i][1]
+    prey, predator = [], []
+    for t in tf:
+        n = int((t-t0)/h)
+        prey_new, predator_new = runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)
+        prey.append(prey_new)
+        predator.append(predator_new)
+    axis[0].plot(tf, prey, label=f'alpha = {alpha}, beta = {beta}', color=colors[i])
+    axis[1].plot(tf, predator, label=f'alpha = {alpha}, beta = {beta}', color=colors[i])
 
-axis[0].plot(tf, prey, label='Presa', color='blue')
 axis[0].set_xlabel('Tiempo')
 axis[0].set_ylabel('Población de presas')
+axis[0].legend()
 
-axis[1].plot(tf, predator, label='Predador', color='red')
 axis[1].set_xlabel('Tiempo')
 axis[1].set_ylabel('Población de predadores')
 
@@ -249,7 +252,7 @@ N0 = 2
 P0 = 2
 
 t0 = 0
-tf = 10
+tf = 30
 h = 0.01
 n = int((tf - t0) / h)
 
