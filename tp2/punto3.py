@@ -114,6 +114,7 @@ h = 0.01
 prey, predator = [], []
 alpha_and_beta = [(0.3, 0.3), (0.8, 0.4), (0.5, 1.1)]
 colors = ['m', 'b', 'c']
+linestyles = ['-', '--', ':']
 
 for i in range(3):
     alpha, beta = alpha_and_beta[i][0], alpha_and_beta[i][1]
@@ -123,8 +124,8 @@ for i in range(3):
         prey_new, predator_new = runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)
         prey.append(prey_new)
         predator.append(predator_new)
-    axis[0].plot(tf, prey, label=f'alpha = {alpha}, beta = {beta}', color=colors[i])
-    axis[1].plot(tf, predator, label=f'alpha = {alpha}, beta = {beta}', color=colors[i])
+    axis[0].plot(tf, prey, label=f'alpha = {alpha}, beta = {beta}', color=colors[i], linestyle=linestyles[i])
+    axis[1].plot(tf, predator, label=f'alpha = {alpha}, beta = {beta}', color=colors[i], linestyle=linestyles[i])
 
 # axis[0].plot(tf, prey, label='Presa', color='blue')
 axis[0].set_xlabel('Tiempo')
@@ -227,8 +228,8 @@ for i in range(3):
         prey_new, predator_new = runge_kutta4_system(dNdt, dPdt, t0, N0, P0, h, n)
         prey.append(prey_new)
         predator.append(predator_new)
-    axis[0].plot(tf, prey, label=f'alpha = {alpha}, beta = {beta}', color=colors[i])
-    axis[1].plot(tf, predator, label=f'alpha = {alpha}, beta = {beta}', color=colors[i])
+    axis[0].plot(tf, prey, label=f'alpha = {alpha}, beta = {beta}', color=colors[i], linestyle=linestyles[i])
+    axis[1].plot(tf, predator, label=f'alpha = {alpha}, beta = {beta}', color=colors[i], linestyle=linestyles[i])
 
 axis[0].set_xlabel('Tiempo')
 axis[0].set_ylabel('Población de presas')
