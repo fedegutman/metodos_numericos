@@ -144,19 +144,17 @@ alpha = 0.9
 beta = 0.8
 q = 1.2
 r = 1.1
-N0 = 2
-P0 = 2
+condiciones_iniciales = [(2, 2), (3, 2), (4, 2), (5, 2), (2, 3), (2, 4), (2, 5)]
 
 t0 = 0
 tf = 10
 h = 0.01
 n = int((tf - t0) / h)
 
-for i in range(5):
+for i in range(7):
+    N0, P0 = condiciones_iniciales[i]
     prey, predator = runge_kutta4_system_phaseplot(dNdt, dPdt, t0, N0, P0, h, n)
     plt.plot(prey, predator, label=f'N0, P0 = {N0}, {P0}')
-    N0 += 1
-    P0 += 1
 
 plt.xlabel('Población de presas')
 plt.ylabel('Población de predadores')
@@ -248,6 +246,7 @@ alpha = 0.9
 beta = 0.8
 q = 1.2
 r = 1.1
+condiciones_iniciales = [(2, 2), (3, 2), (4, 2), (5, 2), (2, 3), (2, 4), (2, 5)]
 N0 = 2
 P0 = 2
 
@@ -257,10 +256,10 @@ h = 0.01
 n = int((tf - t0) / h)
 
 for i in range(7):
+    N0, P0 = condiciones_iniciales[i]
     prey, predator = runge_kutta4_system_phaseplot(dNdt, dPdt, t0, N0, P0, h, n)
     plt.plot(prey, predator, label=f'N0, P0 = {N0}, {P0}')
-    N0 += 1
-    P0 += 1
+
 
 plt.xlabel('Población de presas')
 plt.ylabel('Población de predadores')
