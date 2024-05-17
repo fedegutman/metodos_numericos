@@ -112,7 +112,7 @@ tf = np.linspace(1, 40, 200)
 h = 0.01
 
 prey, predator = [], []
-parameters = [(0.3, 0.3, 1.3, 1.1, 10), (0.8, 0.4, 1.1, 0.8, 8), (0.5, 0.7, 0.9, 0.5, 6)]
+parameters = [(0.3, 0.3, 1.3, 0.9, 15), (0.4, 0.2, 1.8, 0.7, 20), (0.1, 0.2, 0.8, 0.8, 25)]
 colors = ['m', 'b', 'c']
 linestyles = ['-', '--', ':']
 
@@ -130,10 +130,12 @@ for i in range(3):
 # axis[0].plot(tf, prey, label='Presa', color='blue')
 axis[0].set_xlabel('Tiempo')
 axis[0].set_ylabel('Población de presas')
+axis[0].set_ylim(0, 14)
 
 # axis[1].plot(tf, predator, label='Predador', color='red')
 axis[1].set_xlabel('Tiempo')
 axis[1].set_ylabel('Población de predadores')
+axis[1].set_ylim(0, 14)
 axis[0].legend()
 
 figure.subplots_adjust(hspace=0.3)
@@ -213,7 +215,7 @@ plt.show()
 # Grafico las trayectorias del sistema
 figure, axis = plt.subplots(2, 1)
 
-N0, P0 = 5, 5
+N0, P0 = 6, 6
 t0 = 0
 tf = np.linspace(1, 40, 100)
 h = 0.01
@@ -233,10 +235,12 @@ for i in range(3):
 
 axis[0].set_xlabel('Tiempo')
 axis[0].set_ylabel('Población de presas')
+axis[0].set_ylim(0, 10)
 axis[0].legend()
 
 axis[1].set_xlabel('Tiempo')
 axis[1].set_ylabel('Población de predadores')
+axis[1].set_ylim(0, 10)
 
 figure.subplots_adjust(hspace=0.3)
 plt.show()
@@ -248,6 +252,7 @@ beta = 0.8
 q = 1.2
 r = 1.1
 condiciones_iniciales = [(2, 2), (3, 2), (4, 2), (5, 2), (2, 3), (2, 4), (2, 5)]
+K = 10
 N0 = 2
 P0 = 2
 
