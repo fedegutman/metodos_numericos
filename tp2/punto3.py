@@ -53,21 +53,9 @@ def runge_kutta4_system_phaseplot(f1, f2, t0, x0, y0, h, n):
 
 # Presa
 dNdt = lambda N, P, t: r*N - alpha*N*P
-'''
-r -> tasa de crecimiento de las presas
-N -> numero de individuos (presas)
-alpha -> eficiencia de captura
-P -> numero de individuos (predadores)
-'''
 
 # Predador
 dPdt = lambda N, P, t: beta*N*P - q*P
-'''
-beta -> eficiencia de conversión
-N -> numero de individuos (presas)
-P -> numero de individuos (predadores)
-q -> tasa de mortalidad de los predadores
-'''
 
 # Grafico las isoclinas 
 '''
@@ -104,6 +92,8 @@ plt.quiver(N1, N2, normalized_r1, normalized_r2, color='black',)
 
 plt.show()
 
+# Grafico las trayectorias del sistema
+
 figure, axis = plt.subplots(2, 1)
 
 N0, P0 = 5, 5
@@ -127,12 +117,10 @@ for i in range(3):
     axis[0].plot(tf, prey, label=f'alpha = {alpha}, beta = {beta}, r = {r}, q = {q}, K = {K}', color=colors[i], linestyle=linestyles[i])
     axis[1].plot(tf, predator, label=f'alpha = {alpha}, beta = {beta}, r = {r}, q = {q}, K = {K}', color=colors[i], linestyle=linestyles[i])
 
-# axis[0].plot(tf, prey, label='Presa', color='blue')
 axis[0].set_xlabel('Tiempo')
 axis[0].set_ylabel('Población de presas')
 axis[0].set_ylim(0, 14)
 
-# axis[1].plot(tf, predator, label='Predador', color='red')
 axis[1].set_xlabel('Tiempo')
 axis[1].set_ylabel('Población de predadores')
 axis[1].set_ylim(0, 14)
@@ -162,15 +150,6 @@ for i in range(7):
 plt.xlabel('Población de presas')
 plt.ylabel('Población de predadores')
 plt.legend()
-
-'''
-N1, N2 = np.meshgrid(np.linspace(0.1, 10, 15), np.linspace(0.1, 10, 15))
-magnitude = np.sqrt((r*N1 - alpha*N1*N2)**2 + (beta*N1*N2 - q*N2)**2)
-normalized_r1 = (r*N1 - alpha*N1*N2) / magnitude
-normalized_r2 = (beta*N1*N2 - q*N2) / magnitude
-plt.quiver(N1, N2, normalized_r1, normalized_r2, color='black',)
-
-'''
 plt.show()
 
 
@@ -245,7 +224,7 @@ axis[1].set_ylim(0, 10)
 figure.subplots_adjust(hspace=0.3)
 plt.show()
 
-# Grafico el diagrama de fases ESTO A CHEQUEEAAAAR
+# Grafico el diagrama de fases
 
 alpha = 0.9
 beta = 0.8
@@ -270,13 +249,4 @@ for i in range(7):
 plt.xlabel('Población de presas')
 plt.ylabel('Población de predadores')
 plt.legend()
-
-'''
-N1, N2 = np.meshgrid(np.linspace(0.1, 10, 15), np.linspace(0.1, 10, 15))
-magnitude = np.sqrt((r*N1*(1 - N1/K) - alpha*N1*N2)**2 + (beta*N1*N2 - q*N2)**2)
-normalized_r1 = (r*N1*(1 - N1/K) - alpha*N1*N2) / magnitude
-normalized_r2 = (beta*N1*N2 - q*N2) / magnitude
-plt.quiver(N1, N2, normalized_r1, normalized_r2, color='black',)
-'''
-
 plt.show()

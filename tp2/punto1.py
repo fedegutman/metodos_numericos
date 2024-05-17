@@ -140,7 +140,7 @@ figure.subplots_adjust(wspace=0.5, hspace=0.3)
 
 plt.show()
 
-# PUNTO DE EQUILIBRIO -> CUANDO N = 0 o CUANDO N = K (ESTO ESTA BIEN -> ABAJO DE TODO ESTA CORROBORADO)
+# PUNTO DE EQUILIBRIO -> CUANDO N = 0 o CUANDO N = K (ABAJO DE TODO ESTA CORROBORADO)
 
 # Obtengo las soluciones numéricas de ambas ecuaciones por los métodos vistos y comparo con las soluciones exactas
 N0 = 2

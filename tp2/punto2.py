@@ -27,12 +27,9 @@ def runge_kutta4_system(f1, f2, t0, x0, y0, h, n):
 
 # Especie 1
 dN1dt = lambda N1, N2, t: r1*N1*(1 - (N1 + alpha*N2)/K1)
-'alpha -> el efecto que tiene un individuo especie 2 sobre el crecimiento poblacional de la especie 1'
-'por eso es que lo multiplico por N2 (la cantidad de individuos de la especie 2)'
 
 # Especie 2
 dN2dt = lambda N1, N2, t: r2*N2*(1 - (N2 + beta*N1)/K2)
-'beta -> el efecto que tiene la especie 1 sobre el crecimiento poblacional de la especie 2'
 
 # Parámetros
 r1, r2 = 0.5, 0.7
@@ -100,11 +97,6 @@ axis1[0, 0].set_xlim(0, K1 + 5)
 axis1[0, 0].legend()
 axis1[0, 0].set_title('Gana especie 1')
 
-'''
-x, y = np.meshgrid(np.linspace(0, K1/alpha +5, 100), np.linspace(0, K1 + 50, 100)) # para que me cubra todo el grafico
-axis1[0, 0].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=1, color='black')
-'''
-
 x, y = np.meshgrid(np.linspace(0.1, K1, 15), np.linspace(0.1, K1/alpha, 15))
 magnitude = np.sqrt((r1*x*(1 - (x + alpha*y)/K1))**2 + (r2*y*(1 - (y + beta*x)/K2))**2)
 normalized_r1 = r1*x*(1 - (x + alpha*y)/K1) / magnitude
@@ -124,7 +116,7 @@ axis2[0, 0].plot(tf, np.array(N1), label='(E1), r1 = 0.5', color='blue')
 axis2[0, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='green')
 axis2[0, 0].set_title('Gana especie 1')
 
-# Grafico con lineas punteadas lo  mismo pero utilizando otros parametros
+# Grafico con lineas punteadas lo mismo pero utilizando otros parametros
 N1 = []
 N2 = []
 r1, r2 = 0.1, 0.3
@@ -169,10 +161,6 @@ axis1[0, 1].plot(N1_values, S2_isocline, label='Especie 2', color='green')
 axis1[0, 1].set_ylim(0, K2 + 5)
 axis1[0, 1].set_xlim(0, K2/beta + 5)
 axis1[0, 1].set_title('Gana especie 2')
-'''
-x, y = np.meshgrid(np.linspace(0, K2/beta + 5, 100), np.linspace(0, K2 + 5, 100))
-axis1[0, 1].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=0.7, color='black')
-'''
 
 x, y = np.meshgrid(np.linspace(0.1, K2/beta, 15), np.linspace(0.1, K2, 15))
 magnitude = np.sqrt((r1*x*(1 - (x + alpha*y)/K1))**2 + (r2*y*(1 - (y + beta*x)/K2))**2)
@@ -193,7 +181,7 @@ axis2[0, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.5', color='blue')
 axis2[0, 1].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='green')
 axis2[0, 1].set_title('Gana especie 2')
 
-# Grafico con lineas punteadas lo  mismo pero utilizando otros parametros
+# Grafico con lineas punteadas lo mismo pero utilizando otros parametros
 
 N1 = []
 N2 = []
@@ -240,11 +228,6 @@ axis1[1, 0].set_ylim(0, K1 + 2)
 axis1[1, 0].set_xlim(0, K1 + 5)
 axis1[1, 0].set_title('Gana cualquiera')
 
-'''
-x, y = np.meshgrid(np.linspace(0, K1 + 5, 100), np.linspace(0, K1/alpha + 5, 100))
-axis1[1, 0].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=0.7, color='black')
-'''
-
 x, y = np.meshgrid(np.linspace(0.1, K1 + 3, 15), np.linspace(0.1, K2, 15))
 magnitude = np.sqrt((r1*x*(1 - (x + alpha*y)/K1))**2 + (r2*y*(1 - (y + beta*x)/K2))**2)
 normalized_r1 = r1*x*(1 - (x + alpha*y)/K1) / magnitude
@@ -264,7 +247,7 @@ axis2[1, 0].plot(tf, np.array(N1), label='(E1), r1 = 0.5', color='blue')
 axis2[1, 0].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='green')
 axis2[1, 0].set_title('Gana cualquiera')
 
-# Grafico con lineas punteadas lo  mismo pero utilizando otros parametros
+# Grafico con lineas punteadas lo mismo pero utilizando otros parametros
 
 N1 = []
 N2 = []
@@ -311,11 +294,6 @@ axis1[1, 1].set_ylim(0, K1/alpha + 5)
 axis1[1, 1].set_xlim(0, K2/beta + 5)
 axis1[1, 1].set_title('Coexistencia')
 
-'''
-x, y = np.meshgrid(np.linspace(0, K2/beta + 5, 100), np.linspace(0, K1/alpha + 5, 100))
-axis1[1, 1].streamplot(x, y, r1*x*(1 - (x + alpha*y)/K1), r2*y*(1 - (y + beta*x)/K2), density=0.7, color='black')
-'''
-
 x, y = np.meshgrid(np.linspace(0.1, K2/beta + 2, 15), np.linspace(0.1, K1/alpha + 2, 15))
 magnitude = np.sqrt((r1*x*(1 - (x + alpha*y)/K1))**2 + (r2*y*(1 - (y + beta*x)/K2))**2)
 normalized_r1 = r1*x*(1 - (x + alpha*y)/K1) / magnitude
@@ -335,7 +313,7 @@ axis2[1, 1].plot(tf, np.array(N1), label='(E1), r1 = 0.5', color='blue')
 axis2[1, 1].plot(tf, np.array(N2), label='(E2), r2 = 0.7', color='green')
 axis2[1, 1].set_title('Coexistencia')
 
-# Grafico con lineas punteadas lo  mismo pero utilizando otros parametros
+# Grafico con lineas punteadas lo mismo pero utilizando otros parametros
 
 N1 = []
 N2 = []
