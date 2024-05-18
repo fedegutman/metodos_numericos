@@ -69,8 +69,8 @@ N = q/beta
 
 # Graficos de las isoclinas de crecimiento poblacional cero
 
-r, alpha = 1.3, 0.5
-q, beta = 1.1, 0.3
+r, alpha = 1.3, 0.6
+q, beta = 1.1, 0.4
 N = np.linspace(0, 10, 100)
 
 isoclina_presa = np.array([r/alpha for _ in N])
@@ -131,10 +131,8 @@ plt.show()
 
 # Grafico el diagrama de fases
 
-alpha = 0.9
-beta = 0.8
-q = 1.2
-r = 1.1
+r, alpha = 1.3, 0.6
+q, beta = 1.1, 0.4
 condiciones_iniciales = [(2, 2), (3, 2), (4, 2), (5, 2), (2, 3), (2, 4), (2, 5)]
 
 t0 = 0
@@ -168,8 +166,10 @@ P = r/alpha * (1 - N/K)
 N = q/beta
 '''
 
-r, alpha = 1.3, 0.5
-q, beta = 1.1, 0.3
+alpha = 0.7
+beta = 0.6
+q = 1.2
+r = 1.1
 K = 10
 N = np.linspace(0, 10, 100)
 
@@ -226,8 +226,8 @@ plt.show()
 
 # Grafico el diagrama de fases
 
-alpha = 0.9
-beta = 0.8
+alpha = 0.7
+beta = 0.6
 q = 1.2
 r = 1.1
 condiciones_iniciales = [(2, 2), (3, 2), (4, 2), (5, 2), (2, 3), (2, 4), (2, 5)]
